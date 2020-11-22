@@ -15,6 +15,17 @@ class CreateChildrenTable extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->id();
+            $table->string("first_name");
+            $table->string("last_name");
+            $table->string("national_code");
+            $table->string("address");
+            $table->string("mobile");
+            $table->string("phone");
+            $table->integer("supporters_count");
+            $table->text("emotional_text");
+            $table->text("about");
+            $table->text("needs");
+            $table->integer("priority");
             $table->timestamps();
         });
     }
