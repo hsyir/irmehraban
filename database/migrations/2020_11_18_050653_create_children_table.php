@@ -15,17 +15,18 @@ class CreateChildrenTable extends Migration
     {
         Schema::create('children', function (Blueprint $table) {
             $table->id();
-            $table->string("first_name");
-            $table->string("last_name");
-            $table->string("national_code");
-            $table->string("address");
-            $table->string("mobile");
-            $table->string("phone");
-            $table->integer("supporters_count");
-            $table->text("emotional_text");
-            $table->text("about");
-            $table->text("needs");
-            $table->integer("priority");
+            $table->string("first_name")->nullable();
+            $table->string("last_name")->nullable();
+            $table->string("national_code")->nullable();
+            $table->string("address")->nullable();
+            $table->string("mobile")->nullable();
+            $table->string("phone")->nullable();
+            $table->integer("supporters_count")->nullable();
+            $table->text("emotional_text")->nullable();
+            $table->text("about")->nullable();
+            $table->text("needs")->nullable();
+            $table->integer("priority")->nullable();
+            $table->date("birth_date")->nullable();
             $table->timestamps();
         });
     }

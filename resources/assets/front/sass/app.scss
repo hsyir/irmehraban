@@ -5,10 +5,11 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap-v4-rtl/dist/css/bootstrap-rtl';
+@import "~bootstrap/scss/bootstrap";
+@import "../bs4_rtl/rtl";
+//@import '~bootstrap-v4-rtl/dist/css/bootstrap-rtl';
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import 'fonts';
-
 
 html{
     font-size: 14px;
@@ -16,7 +17,6 @@ html{
 body{
     font-family: 'IRANSans';
     background-color: #cacaba;
-    padding-top: 49px;
 }
 .card{
     box-shadow: 0 0 10px 5px rgba(0, 4, 40, 0.2);
