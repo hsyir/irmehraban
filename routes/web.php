@@ -27,3 +27,7 @@ Route::get("getChildrenList","ChildrenController@childrenList")->name("children.
 
 Auth::routes();
 
+
+Route::get("sketch",function(){
+    return view("sketch");
+});
