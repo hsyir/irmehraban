@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29d993c5b8ae41f2b2203c296a863ab0",
+    "content-hash": "d74be11f54b08cf3c7ce158ecee6d47d",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1528,6 +1528,56 @@
                 "source": "https://github.com/hsyir/html/tree/2.0.0"
             },
             "time": "2020-09-05T15:36:27+00:00"
+        },
+        {
+            "name": "hsyir/options",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hsyir/options.git",
+                "reference": "ed68d52933fb392acf60fd578b7cc159d851dfc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hsyir/options/zipball/ed68d52933fb392acf60fd578b7cc159d851dfc5",
+                "reference": "ed68d52933fb392acf60fd578b7cc159d851dfc5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "9999999-dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hsy\\Options\\OptionsServiceProvider"
+                    ],
+                    "aliases": {
+                        "Options": "Hsy\\Options\\Facades\\Options"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hsy\\Options\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "hosseinyaghmaee",
+                    "email": "hosseinyaghmaee@gmail.com"
+                }
+            ],
+            "description": "Package for manage options",
+            "support": {
+                "issues": "https://github.com/hsyir/options/issues",
+                "source": "https://github.com/hsyir/options/tree/3.0.0"
+            },
+            "time": "2020-12-04T19:46:22+00:00"
         },
         {
             "name": "intervention/image",
