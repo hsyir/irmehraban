@@ -15051,14 +15051,14 @@ body {
   background-color: #cacaba;
 }
 
-.card {
+.card.shadow {
   box-shadow: 0 0 10px 5px rgba(0, 4, 40, 0.2);
   transition: all ease 0.2s;
 }
-.card:hover, .card:focus {
+.card.shadow:hover, .card.shadow:focus {
   box-shadow: 0 0 10px 1px rgba(0, 4, 40, 0.2);
 }
-.card .card-header {
+.card.shadow .card-header {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
