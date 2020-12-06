@@ -35,6 +35,7 @@
         "select2": "^4.0.13",
         "select2-bootstrap-theme": "0.1.0-beta.10",
         "sweetalert2": "^9.17.1",
+        "vivus": "^0.4.5",
         "wow.js": "^1.2.2"
     }
 }

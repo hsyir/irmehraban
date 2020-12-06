@@ -51,3 +51,9 @@ require("./../notifyjs/notify.min")
 
 
 require("./Store/storeManager");
+
+
+window.Vivus = require("vivus");
+$(document).ready(function(){
+    new Vivus('my-svg', {duration: 200});
+})
