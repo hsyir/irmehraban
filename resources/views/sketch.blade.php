@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--slider--}}
     <section class="  ">
         <div class="container">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -32,6 +33,8 @@
             </div>
         </div>
     </section>
+
+    {{--description--}}
     <section class="mt-2">
         <div class="container ">
             <div class="bg-white">
@@ -50,39 +53,39 @@
         </div>
     </section>
 
-
+    {{--numbers--}}
     <section class="mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card shadow">
+                        <div class="card-body ">
                             <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
+                            <h3 class="h3 text-center">1300 نفر</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5 class="h5 text-center">فرزندان در انتظار حمایت</h5>
                             <h3 class="h3 text-center">1500 نفر</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="h5 text-center">سرانه دریافتی هر فزرند</h5>
-                            <h3 class="h3 text-center">70 هزار تومان در ماه</h3>
+                            <h5 class="h5 text-center">تعداد محسنین تحت حمایت</h5>
+                            <h3 class="h3 text-center">700 نفر</h3>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body">
-                            <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
-                            <h3 class="h3 text-center">1500 نفر</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
-                            <h3 class="h3 text-center">1500 نفر</h3>
+                            <h5 class="h5 text-center">محسنین در انتظار حمایت</h5>
+                            <h3 class="h3 text-center">1100 نفر</h3>
                         </div>
                     </div>
                 </div>
@@ -90,36 +93,52 @@
         </div>
     </section>
 
-
+    {{--supperters--}}
+    @php
+            $faker = Faker\Factory::create("fa_IR");
+    @endphp
     <section class="mt-5">
         <div class="container  ">
-            <div class="bg-white">
-                <div class="row">
-                    <div class="col-md-12 ">
-                        <h3 class="h3 pt-5 text-center">سخنان حامیان</h3>
-                    </div>
-                    <div class="col-md-12 p-5">
-                        <div class="container">
-                            <div id="carouselContent" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner" role="listbox">
-                                    <div class="carousel-item active text-center p-4">
-                                        <p class="blockquote">من خیلی خوشحالم که شما رو دارم</p>
-                                    </div>
-                                    <div class="carousel-item text-center p-4">
+            <div class="card">
+                <div class="card-body">
 
-                                        <p>من حسین یغمایی هستم و خیلی خوشحالم که حامی هستم</p>
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <h3 class="h3 pt-5 text-center">سخنان حامیان</h3>
+                        </div>
+                        <div class="col-md-12 p-5">
+                            <div class="container">
+                                <div id="carouselContent" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner m-5" role="listbox">
+                                        @for($i=1;$i<6;$i++)
+                                            <div class="carousel-item {{ $i==1 ? "active" : ""}} p-5">
+                                                <div class="row justify-content-center">
+                                                    <div class="col-md-2">
+                                                        <img src="{{ asset("images/supporters_image_holder/{$i}.jpg") }}" alt=""
+                                                             class="w-100 rounded-circle border">
+                                                    </div>
+
+                                                    <div class="col-md-10">
+                                                        <h4 class="h4">{{ $faker->name  }}</h4>
+                                                        <p class="blockquote">{{ $faker->realText(600)  }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                </div>
+                                            </div>
+                                        @endfor
                                     </div>
+                                    <a class="carousel-control-prev" href="#carouselContent" role="button"
+                                       data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselContent" role="button"
+                                       data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselContent" role="button"
-                                   data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselContent" role="button"
-                                   data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -128,7 +147,7 @@
         </div>
     </section>
 
-
+    {{--quick navi--}}
     @php
         $cards=[
             [
@@ -157,7 +176,6 @@
             ]
         ]
     @endphp
-
     <section class="mt-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -180,7 +198,7 @@
         </div>
     </section>
 
-
+    {{--children support--}}
     <section class="mt-5 mb-5">
         <div class="container">
 
@@ -211,7 +229,9 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class=" text-primary"><span class="h4">{{ $child->name }}</span> /  {{ $child->age }} ساله</div>
+                                            <div class=" text-primary"><span class="h4">{{ $child->name }}</span>
+                                                / {{ $child->age }} ساله
+                                            </div>
                                         </div>
 
                                         <div class="col-12">
@@ -235,7 +255,8 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-sm btn-outline-primary float-left"><i class="fa fa-plus"> </i>
+                                    <button class="btn btn-sm btn-outline-primary float-left"><i
+                                            class="fa fa-plus"> </i>
                                         افزودن به لیست مهربانی
                                     </button>
                                 </div>
@@ -274,6 +295,10 @@
                         <input type="text" class="form-control" id="name">
                     </div>
                     <div class="form-group">
+                        <label for="name">نحوه آشنایی شما با این وبسایت:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
                         <button class="btn btn-primary float-left">ثبت اطلاعات</button>
                     </div>
                 </form>
@@ -283,7 +308,7 @@
         </div>
     </section>
 
-
+    {{--footer--}}
     <section class="bg-dark p-5 ">
         <div class="p-5"></div>
     </section>

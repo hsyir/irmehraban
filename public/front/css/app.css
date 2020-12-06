@@ -15048,7 +15048,7 @@ html {
 
 body {
   font-family: "IRANSans";
-  background-color: #cacaba;
+  background: url("/images/bg-blur.jpg") repeat-x;
 }
 
 .card.shadow {
