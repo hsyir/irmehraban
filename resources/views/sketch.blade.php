@@ -116,7 +116,7 @@
             <div class="row justify-content-center">
                 @foreach($cards as $card)
                     <div class="col-md-3 mb-3 ">
-                        <div class="card h-100">
+                        <div class="card h-100 shadow">
                             <div class="card-body">
                                 <div class="text-center">
                                     <h4 class="h4"> {{ $card["title"] }}</h4>
@@ -133,62 +133,92 @@
         </div>
     </section>
 
+
     <section class="mt-5 mb-5">
         <div class="container">
-            @php($children=\App\Models\Child::limit(20)->get())
-            <div class="row">
-                @foreach($children as $child)
-                    <div class="col-sm-6 col-md-4 mb-2 col-lg-3">
-                        <div class="card">
-                            <div class="card-header">{{ $child->name }}</div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-4 col-sm-5 col-md-6">
-                                        <img src="{{ $child->image_url }}" class="w-100" alt="">
-                                    </div>
-                                    <div class="col-8 col-sm-7 col-md-6">
-                                        <div>
-                                            {{ $child->age }} ساله
+
+            <div>
+                <h3>حمایت ماهیانه از فرزندان ایتام و محسنین</h3>
+                <p>شما میتوانید به صورت ماهیانه از فرزندان ایتام و محسنین با حداقل مبلغ 10 هزار تومان حمایت کنید.</p>
+                <p>لطفا مراحل زیر را دنبال کنید</p>
+            </div>
+
+
+            <div class="p-3">
+
+                <div>
+                    <h4># مرحله 1: انتخاب فرزندان</h4>
+                    <p>لطفا از لیست زیر فرزندان مورد نظر خود را انتخاب کنید:</p>
+                </div>
+
+                @php($children=\App\Models\Child::limit(20)->get())
+                <div class="row">
+                    @foreach($children as $child)
+                        <div class="col-sm-6 col-md-4 mb-2 col-lg-3">
+                            <div class="card shadow">
+                                <div class="card-header">{{ $child->name }}</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-4 col-sm-5 col-md-6">
+                                            <img src="{{ $child->image_url }}" class="w-100" alt="">
                                         </div>
-                                        <div>
-                                            <strong>شهر:</strong> کاشمر
+                                        <div class="col-8 col-sm-7 col-md-6">
+                                            <div>
+                                                {{ $child->age }} ساله
+                                            </div>
+                                            <div>
+                                                <strong>شهر:</strong> کاشمر
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer">
-                                <button class="btn btn-sm btn-outline-primary float-left"><i class="fa fa-plus"></i>
-                                </button>
+                                <div class="card-footer">
+                                    <button class="btn btn-sm btn-outline-primary float-left"><i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="row my-3">
-                <div class="col">
-                    <div class="text-center">
-
-                        <button class="btn btn-outline-primary ">مشاهده موارد بیشتر</button>
-
-                    </div>
-
+                    @endforeach
                 </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <div>
-                                شما تا کنون <strong>25 فرزند</strong> را به لیست مهر و محبتتان افزوده اید.
 
-                                <button class="btn btn-sm btn-primary float-left">برای ادامه اینجا کلیک کنید</button>
 
-                            </div>
-
+                <div class="row my-3">
+                    <div class="col">
+                        <div class="text-center">
+                            <button class="btn btn-outline-primary ">مشاهده موارد بیشتر</button>
                         </div>
                     </div>
                 </div>
+
+
             </div>
+
+            <div class="p-3">
+                <h4 class="h4"># مرحله 2: تکمیل فرم اطلاعات تماس</h4>
+                <strong>
+                    شما تعداد
+                    <span class=""> 5 فرزند </span>
+                    انتخاب کرده اید.
+                </strong>
+                <p>لطفا فرم زیر را تکمیل کنید:</p>
+                <p>بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت.</p>
+
+                <form action="">
+                    <div class="form-group">
+                        <label for="name">نام و نام خانوادگی:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="name">شماره موبایل:</label>
+                        <input type="text" class="form-control" id="name">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary float-left">ثبت اطلاعات</button>
+                    </div>
+                </form>
+
+            </div>
+
         </div>
     </section>
 
