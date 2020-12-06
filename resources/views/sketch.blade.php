@@ -50,7 +50,48 @@
         </div>
     </section>
 
-    <section class="mt-2">
+
+    <section class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
+                            <h3 class="h3 text-center">1500 نفر</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="h5 text-center">سرانه دریافتی هر فزرند</h5>
+                            <h3 class="h3 text-center">70 هزار تومان در ماه</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
+                            <h3 class="h3 text-center">1500 نفر</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="h5 text-center">تعداد ایتام تحت پوشش</h5>
+                            <h3 class="h3 text-center">1500 نفر</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="mt-5">
         <div class="container  ">
             <div class="bg-white">
                 <div class="row">
@@ -107,6 +148,12 @@
                 "subject"=>"میخواهم فرزندانی که دارای شرایط خاص هستند کمک موردی انجام بدهم.",
                 "button-text"=>"اینجا کلیک کنید",
                 "button-class"=>"btn-info",
+            ],
+            [
+                "title"=>"درخت آرزوها",
+                "subject"=>"میخواهم آرزوی یک یتیم را براورده کنم",
+                "button-text"=>"اینجا کلیک کنید",
+                "button-class"=>"btn-danger",
             ]
         ]
     @endphp
@@ -154,34 +201,48 @@
                 @php($children=\App\Models\Child::limit(20)->get())
                 <div class="row">
                     @foreach($children as $child)
-                        <div class="col-sm-6 col-md-4 mb-2 col-lg-3">
-                            <div class="card shadow">
-                                <div class="card-header">{{ $child->name }}</div>
+                        <div class="col-sm-6 col-md-4 mb-4 col-lg-3">
+                            <div class="card shadow h-100">
                                 <div class="card-body">
-                                    <div class="row">
+                                    <div class="row justify-content-center mb-3">
                                         <div class="col-4 col-sm-5 col-md-6">
-                                            <img src="{{ $child->image_url }}" class="w-100" alt="">
+                                            <img src="{{ $child->image_url }}" class="w-100 border " alt="">
                                         </div>
-                                        <div class="col-8 col-sm-7 col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class=" text-primary"><span class="h4">{{ $child->name }}</span> /  {{ $child->age }} ساله</div>
+                                        </div>
+
+                                        <div class="col-12">
                                             <div>
-                                                {{ $child->age }} ساله
+
                                             </div>
                                             <div>
                                                 <strong>شهر:</strong> کاشمر
+                                            </div>
+                                            <p class="p-2">
+                                                {{ $child->about }}
+                                            </p>
+                                            <div>
+                                                @foreach($child->tags as $tag)
+                                                    <div class="badge badge-secondary text-white">
+                                                        {{ $tag->name }}
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-sm btn-outline-primary float-left"><i class="fa fa-plus"></i>
+                                    <button class="btn btn-sm btn-outline-primary float-left"><i class="fa fa-plus"> </i>
+                                        افزودن به لیست مهربانی
                                     </button>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-
-
                 <div class="row my-3">
                     <div class="col">
                         <div class="text-center">

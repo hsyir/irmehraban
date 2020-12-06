@@ -5,11 +5,13 @@ namespace App\Models;
 use Baloot\EloquentHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Tags\HasTags;
 
 class Child extends Model
 {
     use HasFactory;
     use EloquentHelper;
+    use HasTags;
 
     public function getNameAttribute()
     {

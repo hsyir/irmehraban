@@ -26,14 +26,29 @@ class ChildFactory extends Factory
     {
         $this->faker->addProvider(new PersianFaker($this->faker));
 
+        $tags = collect([
+            "در آستانه ازدواج",
+            "در انتظار جهیزیه",
+            "محصل با استعداد",
+            "فقر مالی شدید",
+            "دارای مشکل تنفسی",
+            "محصل",
+            "دانشجو",
+            "بحران روحی",
+            "خانوار پر جمعیت",
+            "استعداد درخشان",
+            "دارای معلولیت",
+        ]);
+
         return [
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'emotional_text' => $this->faker->realText(100),
             'about' => $this->faker->realText(500),
             'needs' => $this->faker->realText(30),
-            'birth_date' => $this->faker->dateTimeBetween("-18 years","-1 years"),
-            'priority' => random_int(1,9),
+            'birth_date' => $this->faker->dateTimeBetween("-18 years", "-1 years"),
+            'priority' => random_int(1, 9),
+            'tags' => $tags->shuffle()->skip(random_int($tags->count()-6,$tags->count()-2))->toArray(),
         ];
     }
 }
