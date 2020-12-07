@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Classes\FakerProviders\PersianFaker;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
             $faker->addProvider(new PersianFaker());
             return $faker;
         });
+
+        Paginator::useBootstrap();
 
     }
 

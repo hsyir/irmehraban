@@ -51614,7 +51614,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
+module.exports = __webpack_require__(/*! D:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
 
 
 /***/ })

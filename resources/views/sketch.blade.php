@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @php
+    $children = \App\Models\Child::paginate(20);
+    @endphp
+
     {{--slider--}}
     <section class="  ">
         <div class="container">
@@ -106,10 +111,10 @@
                         <div class="col-md-12 ">
                             <h3 class="h3 pt-5 text-center">سخنان حامیان</h3>
                         </div>
-                        <div class="col-md-12 p-5">
+                        <div class="col-md-12 ">
                             <div class="container">
                                 <div id="carouselContent" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner m-5" role="listbox">
+                                    <div class="carousel-inner " role="listbox">
                                         @for($i=1;$i<6;$i++)
                                             <div class="carousel-item {{ $i==1 ? "active" : ""}} p-5">
                                                 <div class="row justify-content-center">
@@ -119,8 +124,16 @@
                                                     </div>
 
                                                     <div class="col-md-10">
-                                                        <h4 class="h4">{{ $faker->name  }}</h4>
-                                                        <p class="blockquote">{{ $faker->realText(600)  }}</p>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <p class="blockquote text-justify">{{ $faker->realText(600)  }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <h6 class="h6 float-left pt-3  px-5">{{ $faker->name }}</h6>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -176,7 +189,7 @@
             ]
         ]
     @endphp
-    <section class="mt-5">
+    <section class="mt-5 bg-dark p-5">
         <div class="container">
             <div class="row justify-content-center">
                 @foreach($cards as $card)
