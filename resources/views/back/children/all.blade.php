@@ -28,11 +28,8 @@
                 @foreach($children as $child)
                     <tr>
                         <td></td>
-                        <td><a href="{{ route("admin.children.show",$child) }}">{{ $child->name }}</a></td>
-                        <td>{{ $child->simotel_number }}</td>
-                        <td>{{ $child->users_count }}</td>
-                        <td>{{ $child->entrance_fee }}</td>
-                        <td>{{ $child->credit_ratio }}</td>
+                        <td><a href="{{ route("admin.children.edit",$child) }}">{{ $child->name }}</a></td>
+                        <td>{{ $child->birth_date_fa_f }}</td>
                     </tr>
                 @endforeach
                 </tbody>

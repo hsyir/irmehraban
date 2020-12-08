@@ -60,7 +60,7 @@ class ChildrenController extends Controller
      */
     public function edit(Child $child)
     {
-        //
+        return view("back.children.edit",compact("child"));
     }
 
     /**

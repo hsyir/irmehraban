@@ -1,7 +1,7 @@
-@extends("back.layout.app")
+@extends("back.layouts.app")
 @section("content_header")
     @component("components.breadcrump",
-    ["items"=> ["Dashboard" =>route("admin.queues.index"),"Users" =>route("admin.queues.index"),"current"=>"ویرایش اطلاعات صف"]])
+    ["items"=> ["Dashboard" =>route("admin.children.index"),"Users" =>route("admin.children.index"),"current"=>"ویرایش اطلاعات فرزند"]])
     @endcomponent
 @endsection
 
@@ -10,5 +10,5 @@
 @endphp
 @section("content")
     <x-success></x-success>
-        @include("back.queues._form",["action"=>"edit"])
+        @include("back.children._form",["action"=>"edit"])
 @endsection

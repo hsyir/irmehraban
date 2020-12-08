@@ -19,7 +19,7 @@
                      }}
                     {{
                     Html::text("birth_date")
-                    ->value(old("birth_date",$child->birth_date))
+                    ->value(old("birth_date",$child->birth_date_fa_f))
                     ->label("تاریخ تولد")
                      }}
                     {{

@@ -25,4 +25,9 @@ class Child extends Model
     {
         return \Carbon\Carbon::parse($this["birth_date"])->age;
     }
+
+    protected $casts=[
+        "birth_date"=>"date"
+    ];
+
 }
