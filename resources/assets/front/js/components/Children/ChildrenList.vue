@@ -31,7 +31,7 @@
                                     <strong>شهر:</strong> کاشمر
                                 </div>
                                 <p class="p-2">
-                                    {{ child.about }}
+                                    {{ child.emotional_text }}
                                 </p>
                                 <div>
                                     <div v-for="tag in child.tags" class="badge badge-secondary text-white">
@@ -68,8 +68,10 @@
                             <div class="col-12 px-5 mt-3">
                                 <img src="/images/happyFace.jpg" class="w-100 " alt="" >
                             </div>
-                            <div class="col-12 p-2">
-                                شما "{{ child.name }}" عزیز ما را به لیست مهربانی خود افزوده اید.
+                            <div class="col-12 p-3 mt-3 h6 text-center">
+                                شما
+                                "{{ child.name }}"
+                                عزیز ما را به لیست مهربانی خود افزوده اید.
                             </div>
                         </div>
                     </div>

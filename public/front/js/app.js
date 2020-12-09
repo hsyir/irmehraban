@@ -2018,6 +2018,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChildrenList",
   props: {
@@ -2162,12 +2164,34 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   data: function data() {
     return {
-      loading: false
+      loading: false,
+      name: "",
+      mobile: ""
     };
   },
   methods: {
     removeChild: function removeChild(childIndex) {
       this.$emit("remove", childIndex);
+    },
+    submitForm: function submitForm() {
+      var vm = this;
+      var data = new FormData();
+      data.append("name", this.name);
+      data.append("mobile", this.mobile);
+      data.append("selected_children", JSON.stringify(this.selectedChildren()));
+      axios.post("/children/submitSupportList", data).then(function (res) {
+        vm.formSubmitted();
+      });
+    },
+    selectedChildren: function selectedChildren() {
+      return this.selected_children.map(function (child) {
+        return child.id;
+      });
+    },
+    formSubmitted: function formSubmitted() {
+      this.name = "";
+      this.mobile = "";
+      this.$emit("submitted");
     }
   },
   mounted: function mounted() {}
@@ -2214,6 +2238,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2238,6 +2263,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     },
     removeChild: function removeChild(childIndex) {
       this.selected_children.splice(childIndex, 1);
+    },
+    formSubmitted: function formSubmitted() {
+      this.selected_children = [];
     }
   },
   mounted: function mounted() {}
@@ -39049,7 +39077,7 @@ var render = function() {
                       _c("p", { staticClass: "p-2" }, [
                         _vm._v(
                           "\n                                " +
-                            _vm._s(child.about) +
+                            _vm._s(child.emotional_text) +
                             "\n                            "
                         )
                       ]),
@@ -39129,13 +39157,17 @@ var render = function() {
                     _vm._v(" "),
                     _vm._m(2, true),
                     _vm._v(" "),
-                    _c("div", { staticClass: "col-12 p-2" }, [
-                      _vm._v(
-                        '\n                            شما "' +
-                          _vm._s(child.name) +
-                          '" عزیز ما را به لیست مهربانی خود افزوده اید.\n                        '
-                      )
-                    ])
+                    _c(
+                      "div",
+                      { staticClass: "col-12 p-3 mt-3 h6 text-center" },
+                      [
+                        _vm._v(
+                          '\n                            شما\n                            "' +
+                            _vm._s(child.name) +
+                            '"\n                            عزیز ما را به لیست مهربانی خود افزوده اید.\n                        '
+                        )
+                      ]
+                    )
                   ])
                 ]),
                 _vm._v(" "),
@@ -39268,14 +39300,14 @@ var render = function() {
                     "\n            "
                 )
               ]),
-              _vm._v("\n             فرزند انتخاب کرده اید.\n        ")
+              _vm._v("\n            فرزند انتخاب کرده اید.\n        ")
             ])
           : _vm._e(),
         _vm._v(" "),
         Object.keys(_vm.selected_children).length == 0
           ? _c("strong", [
               _vm._v(
-                "\n           شما تا کنون هیچ فرزندی را انتخاب نکرده اید.\n        "
+                "\n            شما تا کنون هیچ فرزندی را انتخاب نکرده اید.\n        "
               )
             ])
           : _vm._e(),
@@ -39310,15 +39342,81 @@ var render = function() {
           )
         }),
         _vm._v(" "),
-        _c("p", [_vm._v("لطفا فرم زیر را تکمیل کنید:")]),
+        _vm._m(0),
         _vm._v(" "),
-        _c("p", [
-          _vm._v(
-            "بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت."
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(0)
+        _c("form", { staticClass: "childrenList" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "name" } }, [
+              _vm._v("نام و نام خانوادگی:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.name,
+                  expression: "name"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "name" },
+              domProps: { value: _vm.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.name = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "mobile" } }, [
+              _vm._v("شماره موبایل:")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.mobile,
+                  expression: "mobile"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", id: "mobile" },
+              domProps: { value: _vm.mobile },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.mobile = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary float-left",
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.submitForm($event)
+                  }
+                }
+              },
+              [_vm._v("ثبت اطلاعات")]
+            )
+          ])
+        ])
       ],
       2
     )
@@ -39329,31 +39427,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("form", { attrs: { action: "" } }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "name" } }, [
-          _vm._v("نام و نام خانوادگی:")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "name" }
-        })
-      ]),
+    return _c("div", { staticClass: "mt-5 mb-2" }, [
+      _c("strong", [_vm._v("لطفا فرم زیر را تکمیل کنید:")]),
       _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "mobile" } }, [_vm._v("شماره موبایل:")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: { type: "text", id: "mobile" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("button", { staticClass: "btn btn-primary float-left" }, [
-          _vm._v("ثبت اطلاعات")
-        ])
+      _c("div", [
+        _vm._v(
+          "بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت."
+        )
       ])
     ])
   }
@@ -39393,7 +39473,7 @@ var render = function() {
         _vm._v(" "),
         _c("select-child-form", {
           attrs: { selected_children: _vm.selected_children },
-          on: { remove: _vm.removeChild }
+          on: { remove: _vm.removeChild, submitted: _vm.formSubmitted }
         })
       ],
       1

@@ -9,7 +9,8 @@
         <div class="p-3">
             <children-list @select="childSelected" @remove="removeChild"
                            :selected_children="selected_children"></children-list>
-            <select-child-form :selected_children="selected_children" @remove="removeChild"></select-child-form>
+            <select-child-form :selected_children="selected_children" @remove="removeChild"
+                               @submitted="formSubmitted"></select-child-form>
         </div>
     </div>
 </template>
@@ -41,8 +42,11 @@
                 this.selected_children = [...new Set(this.selected_children)]
             },
             removeChild(childIndex) {
-                this.selected_children.splice(childIndex,1)
+                this.selected_children.splice(childIndex, 1)
             },
+            formSubmitted() {
+                this.selected_children=[];
+            }
 
         },
         mounted() {
