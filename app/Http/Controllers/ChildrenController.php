@@ -10,6 +10,6 @@ class ChildrenController extends Controller
 {
     public function childrenList()
     {
-        return new ChildrenCollection(Child::orderBy("priority","ASC")->paginate(100));
+        return new ChildrenCollection(Child::orderBy("priority","ASC")->paginate(24));
     }
 }

@@ -1908,6 +1908,53 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1973,16 +2020,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChildrenList",
-  props: ["selected_children"],
+  props: {
+    url: {
+      "default": '/getChildrenList'
+    },
+    count_per_page: {
+      "default": 6
+    },
+    more_btn: {
+      "default": true
+    },
+    selected_children: {
+      "default": []
+    }
+  },
   components: {},
   data: function data() {
     return {
       loading: false,
-      children_list: {}
+      children_list: [],
+      activeLoadMoreBtn: false,
+      page: 0
     };
   },
   methods: {
     getList: function getList() {
+      var vm = this;
+      this.loading = true;
+      vm.page++;
+      var data = {
+        page: this.page,
+        per_page: this.count_per_page,
+        activeLoadMoreBtn: false
+      };
+      axios.get(vm.url + '?' + $.param(data)).then(function (response) {
+        console.log(response);
+        var children = response.data.data;
+
+        if (response.data.hasOwnProperty("meta")) {
+          var meta = response.data.meta;
+          vm.activeLoadMoreBtn = vm.page >= meta.last_page ? false : true;
+        } else {
+          vm.activeLoadMoreBtn = false;
+        }
+
+        vm.children_list = [].concat(_toConsumableArray(vm.children_list), _toConsumableArray(children));
+      })["catch"]().then(function () {
+        vm.loading = false;
+      });
+    },
+    getList2: function getList2() {
       var vm = this;
       axios.get("getChildrenList").then(function (res) {
         vm.children_list = res.data.data;
@@ -1990,6 +2077,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectChild: function selectChild(child) {
       this.$emit("select", child);
+    },
+    removeChild: function removeChild(child) {
+      this.$emit("remove", this.findSelectedChildIndex(child));
+    },
+    isSelected: function isSelected(theChild) {
+      return this.findSelectedChildIndex(theChild) !== false;
+    },
+    findSelectedChildIndex: function findSelectedChildIndex(theChild) {
+      var selectedChildIndex = this.selected_children.findIndex(function (child) {
+        return child == theChild;
+      });
+      return selectedChildIndex == -1 ? false : selectedChildIndex;
     }
   },
   mounted: function mounted() {
@@ -2046,6 +2145,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SelectChildForm",
   props: ["selected_children"],
@@ -2055,7 +2165,11 @@ __webpack_require__.r(__webpack_exports__);
       loading: false
     };
   },
-  methods: {},
+  methods: {
+    removeChild: function removeChild(childIndex) {
+      this.$emit("remove", childIndex);
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -2100,7 +2214,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2122,6 +2235,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     addToSelection: function addToSelection(child) {
       this.selected_children.push(child);
       this.selected_children = _toConsumableArray(new Set(this.selected_children));
+    },
+    removeChild: function removeChild(childIndex) {
+      this.selected_children.splice(childIndex, 1);
     }
   },
   mounted: function mounted() {}
@@ -38895,91 +39011,189 @@ var render = function() {
       { staticClass: "row" },
       _vm._l(_vm.children_list, function(child) {
         return _c("div", { staticClass: "col-sm-6 col-md-4 mb-4 col-lg-3" }, [
-          _c("div", { staticClass: "card shadow h-100" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "row justify-content-center mb-3" }, [
-                _c("div", { staticClass: "col-4 col-sm-5 col-md-6" }, [
-                  _c("img", {
-                    staticClass: "w-100 border ",
-                    attrs: { src: child.avatar_url, alt: "" }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12" }, [
-                  _c("div", { staticClass: " text-primary" }, [
-                    _c("span", { staticClass: "h4" }, [
-                      _vm._v(_vm._s(child.name))
+          !_vm.isSelected(child)
+            ? _c("div", { staticClass: "card shadow h-100 " }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center mb-3" },
+                    [
+                      _c("div", { staticClass: "col-4 col-sm-5 col-md-6" }, [
+                        _c("img", {
+                          staticClass: "w-100 border ",
+                          attrs: { src: child.avatar_url, alt: "" }
+                        })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: " text-primary" }, [
+                        _c("span", { staticClass: "h4" }, [
+                          _vm._v(_vm._s(child.name))
+                        ]),
+                        _vm._v(
+                          "\n                                / " +
+                            _vm._s(child.age) +
+                            " ساله\n                            "
+                        )
+                      ])
                     ]),
-                    _vm._v(
-                      "\n                                / " +
-                        _vm._s(child.age) +
-                        " ساله\n                            "
-                    )
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12" }, [
+                      _c("div"),
+                      _vm._v(" "),
+                      _vm._m(1, true),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "p-2" }, [
+                        _vm._v(
+                          "\n                                " +
+                            _vm._s(child.about) +
+                            "\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        _vm._l(child.tags, function(tag) {
+                          return _c(
+                            "div",
+                            { staticClass: "badge badge-secondary text-white" },
+                            [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(tag.name.fa) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ])
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "col-12" }, [
-                  _c("div"),
-                  _vm._v(" "),
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "p-2" }, [
-                    _vm._v(
-                      "\n                                " +
-                        _vm._s(child.about) +
-                        "\n                            "
-                    )
-                  ]),
-                  _vm._v(" "),
+                _c("div", { staticClass: "card-footer" }, [
                   _c(
-                    "div",
-                    _vm._l(child.tags, function(tag) {
-                      return _c(
-                        "div",
-                        { staticClass: "badge badge-secondary text-white" },
-                        [
-                          _vm._v(
-                            "\n                                    " +
-                              _vm._s(tag.name.fa) +
-                              "\n                                "
-                          )
-                        ]
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-primary float-left",
+                      on: {
+                        click: function($event) {
+                          return _vm.selectChild(child)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-plus" }),
+                      _vm._v(
+                        "\n                        افزودن به لیست مهربانی\n                    "
                       )
-                    }),
-                    0
+                    ]
                   )
                 ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-footer" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-sm btn-outline-primary float-left",
-                  on: {
-                    click: function($event) {
-                      return _vm.selectChild(child)
-                    }
-                  }
-                },
-                [
-                  _c("i", { staticClass: "fa fa-plus" }),
-                  _vm._v(
-                    "\n                        افزودن به لیست مهربانی\n                    "
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.isSelected(child)
+            ? _c("div", { staticClass: "card shadow h-100 " }, [
+                _c("div", { staticClass: "card-body" }, [
+                  _c(
+                    "div",
+                    { staticClass: "row justify-content-center mb-3" },
+                    [
+                      _c("div", { staticClass: "col-4 col-sm-5 col-md-6 " }, [
+                        _c("img", {
+                          staticClass: "w-100 border",
+                          attrs: { src: child.avatar_url, alt: "" }
+                        })
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: " text-primary" }, [
+                        _c("span", { staticClass: "h4" }, [
+                          _vm._v(_vm._s(child.name))
+                        ]),
+                        _vm._v(
+                          "\n                                / " +
+                            _vm._s(child.age) +
+                            " ساله\n                            "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(2, true),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-12 p-2" }, [
+                      _vm._v(
+                        '\n                            شما "' +
+                          _vm._s(child.name) +
+                          '" عزیز ما را به لیست مهربانی خود افزوده اید.\n                        '
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-sm btn-outline-danger float-left",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeChild(child)
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-minus-circle" }),
+                      _vm._v(
+                        "\n                        حذف از لیست\n                    "
+                      )
+                    ]
                   )
-                ]
-              )
-            ])
-          ])
+                ])
+              ])
+            : _vm._e()
         ])
       }),
       0
     ),
     _vm._v(" "),
-    _vm._m(2)
+    _vm.loading
+      ? _c("div", { staticClass: "text-center h3 text-secondary p-3 pb-5" }, [
+          _c("i", { staticClass: "fa fa-spinner fa-spin " })
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.activeLoadMoreBtn && _vm.more_btn && !_vm.loading
+      ? _c("div", { staticClass: "p-3 pb-5 text-center" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-outline-primary btn-sm",
+              attrs: { type: "button", href: "#", disabled: _vm.loading },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.getList($event)
+                }
+              }
+            },
+            [
+              _vm.loading
+                ? _c("i", { staticClass: "fa fa-spinner fa-spin" })
+                : _vm._e(),
+              _vm._v(" نمایش بیشتر...  ")
+            ]
+          )
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -39006,14 +39220,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row my-3" }, [
-      _c("div", { staticClass: "col" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _c("button", { staticClass: "btn btn-outline-primary " }, [
-            _vm._v("مشاهده موارد بیشتر")
-          ])
-        ])
-      ])
+    return _c("div", { staticClass: "col-12 px-5 mt-3" }, [
+      _c("img", {
+        staticClass: "w-100 ",
+        attrs: { src: "/images/happyFace.jpg", alt: "" }
+      })
     ])
   }
 ]
@@ -39047,22 +39258,56 @@ var render = function() {
           _vm._v("# مرحله 2: تکمیل فرم اطلاعات تماس")
         ]),
         _vm._v(" "),
-        _c("strong", [
-          _vm._v("\n            شما تعداد\n            "),
-          _c("span", { staticClass: " text-primary" }, [
-            _vm._v(
-              "\n    " +
-                _vm._s(Object.keys(_vm.selected_children).length) +
-                "\n            "
-            )
-          ]),
-          _vm._v("\n             فرزند انتخاب کرده اید.\n        ")
-        ]),
+        Object.keys(_vm.selected_children).length > 0
+          ? _c("strong", [
+              _vm._v("\n            شما تعداد\n            "),
+              _c("span", { staticClass: " text-primary" }, [
+                _vm._v(
+                  "\n    " +
+                    _vm._s(Object.keys(_vm.selected_children).length) +
+                    "\n            "
+                )
+              ]),
+              _vm._v("\n             فرزند انتخاب کرده اید.\n        ")
+            ])
+          : _vm._e(),
         _vm._v(" "),
-        _vm._l(_vm.selected_children, function(child) {
-          return _c("span", { staticClass: "text-primary" }, [
-            _vm._v(" " + _vm._s(child.name) + " ")
-          ])
+        Object.keys(_vm.selected_children).length == 0
+          ? _c("strong", [
+              _vm._v(
+                "\n           شما تا کنون هیچ فرزندی را انتخاب نکرده اید.\n        "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._l(_vm.selected_children, function(child, key) {
+          return _c(
+            "span",
+            { staticClass: "badge-primary badge h3 mx-1 pr-2  pl-3 py-1" },
+            [
+              _c("span", { staticClass: "h5" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "px-1 text-white",
+                    attrs: { href: "#" },
+                    on: {
+                      click: [
+                        _vm.removeChild,
+                        function($event) {
+                          $event.preventDefault()
+                        }
+                      ]
+                    }
+                  },
+                  [_c("i", { staticClass: "fa fa-times-circle mt-1" })]
+                ),
+                _vm._v(
+                  "\n                " + _vm._s(child.name) + "\n            "
+                )
+              ])
+            ]
+          )
         }),
         _vm._v(" "),
         _c("p", [_vm._v("لطفا فرم زیر را تکمیل کنید:")]),
@@ -39143,11 +39388,12 @@ var render = function() {
       [
         _c("children-list", {
           attrs: { selected_children: _vm.selected_children },
-          on: { select: _vm.childSelected }
+          on: { select: _vm.childSelected, remove: _vm.removeChild }
         }),
         _vm._v(" "),
         _c("select-child-form", {
-          attrs: { selected_children: _vm.selected_children }
+          attrs: { selected_children: _vm.selected_children },
+          on: { remove: _vm.removeChild }
         })
       ],
       1
@@ -52139,7 +52385,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
 
 
 /***/ })

@@ -7,10 +7,9 @@
         </div>
 
         <div class="p-3">
-            <children-list @select="childSelected" :selected_children="selected_children"></children-list>
-
-
-            <select-child-form  :selected_children="selected_children"></select-child-form>
+            <children-list @select="childSelected" @remove="removeChild"
+                           :selected_children="selected_children"></children-list>
+            <select-child-form :selected_children="selected_children" @remove="removeChild"></select-child-form>
         </div>
     </div>
 </template>
@@ -39,7 +38,10 @@
             },
             addToSelection(child) {
                 this.selected_children.push(child);
-                this.selected_children = [ ...new Set(this.selected_children) ]
+                this.selected_children = [...new Set(this.selected_children)]
+            },
+            removeChild(childIndex) {
+                this.selected_children.splice(childIndex,1)
             },
 
         },
