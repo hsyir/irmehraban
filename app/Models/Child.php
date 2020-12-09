@@ -13,9 +13,15 @@ class Child extends Model
     use EloquentHelper;
     use HasTags;
 
+    protected $fillable=["first_name","last_name",""];
+
     public function getNameAttribute()
     {
         return $this["first_name"];
+    }
+    public function getFullNameAttribute()
+    {
+        return $this["first_name"] . " " . $this["last_name"];
     }
     public function getImageUrlAttribute()
     {

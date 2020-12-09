@@ -14,13 +14,16 @@ class Children extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
+            "id"=>$this->id,
             "name"=>$this->name,
-            "image"=>$this->image_url,
+            "avatar_url"=>$this->image_url,
             "emotional_text"=>$this->emotional_text,
             "about"=>$this->about,
             "age"=>$this->age,
             "birth_date"=>$this->birth_date,
+            "tags"=>$this->tags,
         ];
     }
 }

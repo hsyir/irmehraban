@@ -38,7 +38,12 @@ class ChildrenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $child = $request->isMethod("post") ? new Child : Child::find($request->child_id);
+
+        $child->fill($request->toArray());
+        $child->save();
+
+        return self::redirectWithSuccess(route("admin.children.index"),"انجام شد");
     }
 
     /**
@@ -86,3 +91,11 @@ class ChildrenController extends Controller
         //
     }
 }
+
+/*
+[‎12/‎9/‎2020 6:43 PM] هادی اسماعیلی:
+001110171
+اعتبار مصارف هدفمندی یارانه ها
+001110128
+[‎12/‎9/‎2020 6:44 PM] هادی اسماعیلی:
+اعتبار دولتی انتقالی سنواتی*/

@@ -1,7 +1,7 @@
 <form action="{{ route('admin.children.store')  }}"
       method="post" enctype="multipart/form-data">
     @csrf
-    {{ Html::hidden()->name('queue_id')->value($child->id)->when( $action=='edit') }}
+    {{ Html::hidden()->name('child_id')->value($child->id)->when( $action=='edit') }}
     {{ Html::method()->value("PUT")->when($action=='edit') }}
     <div class="row">
         <div class="col-md-12">

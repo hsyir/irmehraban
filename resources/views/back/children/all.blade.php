@@ -18,17 +18,13 @@
                 <tr>
                     <th></th>
                     <th>نام</th>
-                    <th>شماره</th>
-                    <th>تعداد کاربر</th>
-                    <th>فی ورودی</th>
-                    <th>ضریب کسر اعتبار</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($children as $child)
                     <tr>
                         <td></td>
-                        <td><a href="{{ route("admin.children.edit",$child) }}">{{ $child->name }}</a></td>
+                        <td><a href="{{ route("admin.children.edit",$child) }}">{{ $child->full_name }}</a></td>
                         <td>{{ $child->birth_date_fa_f }}</td>
                     </tr>
                 @endforeach
