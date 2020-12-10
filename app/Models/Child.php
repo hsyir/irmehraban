@@ -13,27 +13,30 @@ class Child extends Model
     use EloquentHelper;
     use HasTags;
 
-    protected $fillable=["first_name","last_name",""];
+    protected $fillable = ["first_name", "last_name", ""];
 
     public function getNameAttribute()
     {
         return $this["first_name"];
     }
+
     public function getFullNameAttribute()
     {
         return $this["first_name"] . " " . $this["last_name"];
     }
+
     public function getImageUrlAttribute()
     {
-        return asset("images/avatars/avatar_" . $this["id"] % 250 .".png");
+        return asset("images/avatars/avatar_" . $this["id"] % 250 . ".png");
     }
+
     public function getAgeAttribute()
     {
         return \Carbon\Carbon::parse($this["birth_date"])->age;
     }
 
-    protected $casts=[
-        "birth_date"=>"date"
+    protected $casts = [
+        "birth_date" => "date",
     ];
 
 }

@@ -25,6 +25,7 @@ Route::get('/avatarNames', function () {
 Route::get("/","HomeController@index")->name("home");
 Route::get("getChildrenList","ChildrenController@childrenList")->name("children.list");
 Route::post("children/submitSupportList","ChildrenController@storeSupportList")->name("children.list");
+Route::get("supports/{uuid}","SupportController@show")->name("supports.show");
 
 Auth::routes();
 

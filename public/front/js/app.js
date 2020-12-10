@@ -2176,11 +2176,12 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var vm = this;
       var data = new FormData();
-      data.append("name", this.name);
-      data.append("mobile", this.mobile);
+      data.append("supporter_name", this.name);
+      data.append("supporter_mobile", this.mobile);
       data.append("selected_children", JSON.stringify(this.selectedChildren()));
       axios.post("/children/submitSupportList", data).then(function (res) {
         vm.formSubmitted();
+        window.location.href = res.data.support_url;
       });
     },
     selectedChildren: function selectedChildren() {
@@ -52465,7 +52466,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
+module.exports = __webpack_require__(/*! D:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
 
 
 /***/ })

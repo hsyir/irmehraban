@@ -69,12 +69,13 @@
                 let vm = this;
 
                 let data = new FormData();
-                data.append("name", this.name);
-                data.append("mobile", this.mobile);
+                data.append("supporter_name", this.name);
+                data.append("supporter_mobile", this.mobile);
                 data.append("selected_children", JSON.stringify(this.selectedChildren()));
                 axios.post("/children/submitSupportList", data)
                     .then(res => {
                         vm.formSubmitted();
+                        window.location.href = res.data.support_url;
                     });
             },
 

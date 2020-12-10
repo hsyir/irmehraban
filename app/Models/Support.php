@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Support extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        "selected_children" => "array"
+    ];
+
+    public function getUrlAttribute()
+    {
+        return route("supports.show",$this->uuid);
+    }
 }
