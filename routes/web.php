@@ -29,7 +29,14 @@ Route::get("supports/{uuid}","SupportController@show")->name("supports.show");
 
 Auth::routes();
 
-
 Route::get("sketch",function(){
     return view("sketch");
 });
+
+
+Route::get("import",function(){
+    $children = \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\ChildrenImport(),storage_path("/emdad-excel/report.xlsx"));
+    dd($children);
+});
+
+
