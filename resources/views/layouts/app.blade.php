@@ -76,15 +76,6 @@
                     @endguest
                 </ul>
             </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="{{ route("home") }}">
-                    <span id="cart-indicator"
-                          class="fa fa-heart {{ 5 > 0 ? "text-danger" : "text-secondary"   }}"></span>
-                        <div class="badge badge-danger" id="supportList-children-count">{{ 5 ?: ""   }}</div>
-                    </a>
-                </li>
-            </ul>
         </div>
 
     </nav>
