@@ -1,29 +1,34 @@
 <template>
     <div>
 
-        <div class="p-3">
-            <h4 class="h4"># مرحله 2: تکمیل فرم اطلاعات تماس</h4>
+        <div class="p-3" id="step2">
+            <h4 class="h4">#مرحله 2: تکمیل فرم اطلاعات تماس</h4>
 
-            <strong v-if="Object.keys(selected_children).length >0">
-                شما تعداد
-                <span class=" text-primary">
+            <div>
+
+                <strong v-if="Object.keys(selected_children).length >0">
+                    شما تعداد
+                    <span class=" text-primary">
         {{ Object.keys(selected_children).length }}
                 </span>
-                فرزند انتخاب کرده اید.
-            </strong>
+                    فرزند انتخاب کرده اید.
+                </strong>
 
-            <strong v-if="Object.keys(selected_children).length == 0">
-                شما تا کنون هیچ فرزندی را انتخاب نکرده اید.
-            </strong>
+                <strong v-if="Object.keys(selected_children).length == 0">
+                    شما تا کنون هیچ فرزندی را انتخاب نکرده اید.
+                </strong>
+            </div>
 
-            <span v-for="(child,key) in selected_children" class="badge-primary badge h3 mx-1 pr-2  pl-3 py-1">
-                <span class="h5">
-                    <a class="px-1 text-white" @click="removeChild" href="#" @click.prevent>
-                        <i class="fa fa-times-circle mt-1"></i>
-                    </a>
-                    {{ child.name }}
+            <div class="p-3">
+                <span v-for="(child,key) in selected_children" class="badge-primary badge h3 mx-1 pr-2  pl-3 py-1">
+                    <span class="h5">
+                        <a class="px-1 text-white" @click="removeChild(key,child)" href="#" @click.prevent>
+                            <i class="fa fa-times-circle mt-1"></i>
+                        </a>
+                        {{ child.name }}
+                    </span>
                 </span>
-            </span>
+            </div>
 
             <div class="mt-5 mb-2">
                 <strong>لطفا فرم زیر را تکمیل کنید:</strong>
@@ -39,7 +44,7 @@
                     <input type="text" class="form-control" id="mobile" v-model="mobile">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary float-left" @click.prevent="submitForm">ثبت اطلاعات</button>
+                    <button class="btn btn-primary float-left" @click.prevent="submitForm" :disabled="loading">ثبت اطلاعات</button>
                 </div>
             </form>
 
@@ -61,11 +66,30 @@
             }
         },
         methods: {
-            removeChild(childIndex) {
-                this.$emit("remove", childIndex)
+            removeChild(childIndex,child) {
+                let vm=this;
+                Swal.fire({
+                    title: 'آیا مطمئن هستید؟',
+                    text: `آیا مطمئن هستید که می خواهید '${child.name}' را از لیست مهربانی خود حذف کنید؟`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'خیر به حمایت ادامه میدهم',
+                    cancelButtonText: 'بله حذف شود'
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        vm.$emit("remove", childIndex)
+                    }
+                })
+
+
+
+
             },
             submitForm() {
 
+                this.loading = true;
                 let vm = this;
 
                 let data = new FormData();
@@ -74,9 +98,43 @@
                 data.append("selected_children", JSON.stringify(this.selectedChildren()));
                 axios.post("/children/submitSupportList", data)
                     .then(res => {
-                        vm.formSubmitted();
-                        window.location.href = res.data.support_url;
-                    });
+
+
+                        setTimeout(function () {
+                            window.location.href = res.data.support_url
+                        }, 5000)
+                        // vm.formSubmitted();
+                        // window.location.href = res.data.support_url;
+                        Swal.fire({
+                            title: 'انجام شد، سپاس',
+                            icon: 'success',
+                            html:
+                                'خیر گرامی، اطلاعات شما در سامانه ایران مهربان ثبت شد. ' +
+                                '<br>' +
+                                '<br>' +
+                                'شما به صورت خودکار به مرحله بعد منتقل خواهید شد.' +
+                                '<br>' +
+                                '<br>' +
+                                'یا اینکه روی لینک زیر کلیک کنید.' +
+                                '<br>' +
+                                '<a class="btn btn-primary  mt-3" href="/supports/' + res.data.uuid + '">مشاهده شناسنامه حمایت</a>' +
+                                '<br>' +
+                                '<br>',
+                            showCloseButton: false,
+                            showCancelButton: false,
+                            showConfirmButton: false,
+                            focusConfirm: false,
+                        })
+                        // Swal.fire("ایران مهربان"," اطلاعات با موفقیت ثبت شد <br> لطفا صبر کنید ","success")
+
+                    })
+                    .catch(res => {
+
+                    })
+                    .then(res => {
+                        vm.loading = false;
+                    })
+                ;
             },
 
             selectedChildren() {
@@ -85,7 +143,7 @@
                 })
             },
             formSubmitted() {
-                this.name="";
+                this.name = "";
                 this.mobile = "";
                 this.$emit("submitted");
             }

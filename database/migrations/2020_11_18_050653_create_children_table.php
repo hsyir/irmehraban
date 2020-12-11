@@ -21,6 +21,9 @@ class CreateChildrenTable extends Migration
             $table->string("address")->nullable();
             $table->string("mobile")->nullable();
             $table->string("phone")->nullable();
+            $table->string("bank_id")->nullable();
+            $table->integer("sex")->nullable();
+            $table->integer("type")->nullable();
             $table->integer("supporters_count")->nullable();
             $table->text("emotional_text")->nullable();
             $table->text("about")->nullable();

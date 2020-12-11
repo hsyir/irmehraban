@@ -12,7 +12,7 @@ class ChildrenController extends Controller
 {
     public function childrenList()
     {
-        return new ChildrenCollection(Child::orderBy("priority", "ASC")->paginate(24));
+        return new ChildrenCollection(Child::orderBy("priority", "ASC")->paginate(12));
     }
 
     public function storeSupportList(Request $request)
@@ -21,7 +21,6 @@ class ChildrenController extends Controller
         $children_list = json_decode($request->selected_children);
 
         $support = new Support();
-        $support->selected_children = $children_list;
         $support->selected_children_count = count($children_list);
         $support->supporter_name = $request->supporter_name;
         $support->supporter_mobile = $request->supporter_mobile;
@@ -29,8 +28,10 @@ class ChildrenController extends Controller
         $support->supporter_tell = $request->supporter_tell;
         $support->supporter_national_code = $request->supporter_national_code;
         $support->how_do_you_meet_us = $request->how_do_you_meet_us;
-        $support->uuid = Str::random(8);
+        $support->uuid = Str::random(16);
         $support->save();
+
+        $support->children()->attach($children_list);
 
         return response()->json([
             "success" => true,

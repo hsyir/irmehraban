@@ -50,10 +50,9 @@
 
         },
         mounted() {
+
         },
     }
 </script>
 
-<style scoped>
 
-</style>

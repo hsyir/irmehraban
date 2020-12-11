@@ -10,6 +10,6 @@ class SupportController extends Controller
     public function show($uuid)
     {
         $support = Support::whereUuid($uuid)->first();
-        return view("front.support.show");
+        return view("front.supports.show",compact("support"));
     }
 }

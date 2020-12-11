@@ -57,3 +57,20 @@ window.Vivus = require("vivus");
 $(document).ready(function(){
     new Vivus('my-svg', {duration: 200});
 })
+
+
+
+window.Swal = require("sweetalert2");
+
+
+
+import WOW from 'wow.js';
+new WOW().init();
+
+
+$(document).ready(function () {
+    setTimeout(t=>{
+        $("#loader").hide();
+    },1000)
+});
+

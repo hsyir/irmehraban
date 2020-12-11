@@ -18,6 +18,9 @@
 
 </head>
 <body class="rtl">
+<div id="loader" class=" min-vh-100 bg-white position-fixed w-100">
+    <div class="spinner"></div>
+</div>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
@@ -72,7 +75,8 @@
                         </li>
                     @endguest
                 </ul>
-            </div> <ul class="nav navbar-nav navbar-right">
+            </div>
+            <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="{{ route("home") }}">
                     <span id="cart-indicator"
@@ -85,7 +89,7 @@
 
     </nav>
 
-    <main >
+    <main>
         @yield('content')
     </main>
 </div>

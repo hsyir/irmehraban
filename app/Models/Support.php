@@ -17,4 +17,8 @@ class Support extends Model
     {
         return route("supports.show",$this->uuid);
     }
+
+    public function children(){
+        return $this->belongsToMany(Child::class);
+    }
 }

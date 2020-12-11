@@ -8,6 +8,7 @@
 @php
     use Hsy\Html\Facades\Html;
 @endphp
+
 @section("content")
     <x-success></x-success>
     {{ $children->render() }}
@@ -16,16 +17,21 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th></th>
+                    <th>کد ملی</th>
                     <th>نام</th>
+                    <th>تاریخ تولد</th>
+                    <th>طرح</th>
+                    <th>جنسیت</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($children as $child)
                     <tr>
-                        <td></td>
+                        <td>{{ $child->national_code }}</td>
                         <td><a href="{{ route("admin.children.edit",$child) }}">{{ $child->full_name }}</a></td>
                         <td>{{ $child->birth_date_fa_f }}</td>
+                        <td>{{ $child->type_readable }}</td>
+                        <td>{{ $child->sex_readable }}</td>
                     </tr>
                 @endforeach
                 </tbody>
