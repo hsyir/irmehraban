@@ -40,3 +40,5 @@ Route::get("import",function(){
 });
 
 
+Route::get("about","FrontController@about")->name("about");
+Route::get("contact","FrontController@contact")->name("contact");
