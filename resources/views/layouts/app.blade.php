@@ -6,10 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! SEO::generate() !!}
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
+<!-- Styles -->
     <link href="{{ asset('front/css/app.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
@@ -35,8 +34,13 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('about') }}">درباره ما</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contact') }}">تماس با ما</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -83,6 +87,43 @@
     <main>
         @yield('content')
     </main>
+
+
+    {{--footer--}}<section id="footer" class="bg-dark p-5">
+        <div class="container  text-white">
+            <div class="row ">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-12 h3">ایران مهربان</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-small">دبیرخانه پویش ایران مهربان - کاشمر</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-12 pt-5">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row copyright mt-2 border-top">
+                <div class="col-12 small pt-3" style="color: #999;">
+
+                </div>
+                <div class="col-12 small " style="color: #999;">
+                    طراحی و توسعه: <a href="http://hsy.ir" class="text-white" target="_blank">Hsy.ir</a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <!-- Scripts -->
 <script src="{{ asset('front/js/app.js') }}" defer></script>
