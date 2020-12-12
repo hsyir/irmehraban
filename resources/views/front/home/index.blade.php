@@ -1,13 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row pt-5 ">
-            <div class="col-md-12">
-                <div class="bg-white p-3">
-                    <monthly-children-support></monthly-children-support>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include("front.home.slider")
+    @include("front.home.about")
+    @include("front.home.numbers")
+    @include("front.home.supporters")
+    @include("front.home.landings")
+    @include("front.home.monthlySupport")
 @endsection
