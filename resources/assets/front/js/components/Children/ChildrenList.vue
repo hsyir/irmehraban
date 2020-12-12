@@ -8,7 +8,7 @@
 
         <div class="row">
             <div v-for="child in children_list" class="col-sm-6 col-md-4 mb-4 col-lg-3">
-                <div class="card shadow h-100  wow  fadeIn ">
+                <div class="card shadow h-100  wow  fadeIn " data-wow-delay=".5s">
                     <div class="card-body position-relative">
 
                             <div class="row justify-content-center mb-3">

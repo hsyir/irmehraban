@@ -213,111 +213,14 @@
 
     {{--children support--}}
     <section class="mt-5 mb-5">
-        <div class="container">
-
-            <div>
-                <h3>حمایت ماهیانه از فرزندان ایتام و محسنین</h3>
-                <p>شما میتوانید به صورت ماهیانه از فرزندان ایتام و محسنین با حداقل مبلغ 10 هزار تومان حمایت کنید.</p>
-                <p>لطفا مراحل زیر را دنبال کنید</p>
-            </div>
-
-
-            <div class="p-3">
-
-                <div>
-                    <h4># مرحله 1: انتخاب فرزندان</h4>
-                    <p>لطفا از لیست زیر فرزندان مورد نظر خود را انتخاب کنید:</p>
-                </div>
-
-                @php($children=\App\Models\Child::limit(20)->get())
-                <div class="row">
-                    @foreach($children as $child)
-                        <div class="col-sm-6 col-md-4 mb-4 col-lg-3">
-                            <div class="card shadow h-100">
-                                <div class="card-body">
-                                    <div class="row justify-content-center mb-3">
-                                        <div class="col-4 col-sm-5 col-md-6">
-                                            <img src="{{ $child->image_url }}" class="w-100 border " alt="">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class=" text-primary"><span class="h4">{{ $child->name }}</span>
-                                                / {{ $child->age }} ساله
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div>
-
-                                            </div>
-                                            <div>
-                                                <strong>شهر:</strong> کاشمر
-                                            </div>
-                                            <p class="p-2">
-                                                {{ $child->about }}
-                                            </p>
-                                            <div>
-                                                @foreach($child->tags as $tag)
-                                                    <div class="badge badge-secondary text-white">
-                                                        {{ $tag->name }}
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <button class="btn btn-sm btn-outline-primary float-left"><i
-                                            class="fa fa-plus"> </i>
-                                        افزودن به لیست مهربانی
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-                <div class="row my-3">
-                    <div class="col">
-                        <div class="text-center">
-                            <button class="btn btn-outline-primary ">مشاهده موارد بیشتر</button>
-                        </div>
+        <div class="container-fluid">
+            <div class="row pt-5 ">
+                <div class="col-md-12">
+                    <div class="bg-white p-3">
+                        <monthly-children-support></monthly-children-support>
                     </div>
                 </div>
-
-
             </div>
-
-            <div class="p-3">
-                <h4 class="h4"># مرحله 2: تکمیل فرم اطلاعات تماس</h4>
-                <strong>
-                    شما تعداد
-                    <span class=""> 5 فرزند </span>
-                    انتخاب کرده اید.
-                </strong>
-                <p>لطفا فرم زیر را تکمیل کنید:</p>
-                <p>بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت.</p>
-
-                <form action="">
-                    <div class="form-group">
-                        <label for="name">نام و نام خانوادگی:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">شماره موبایل:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">نحوه آشنایی شما با این وبسایت:</label>
-                        <input type="text" class="form-control" id="name">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary float-left">ثبت اطلاعات</button>
-                    </div>
-                </form>
-
-            </div>
-
         </div>
     </section>
 

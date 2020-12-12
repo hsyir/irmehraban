@@ -9,8 +9,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('front/js/app.js') }}" defer></script>
+    <!-- Styles -->
+    <link href="{{ asset('front/css/app.css') }}" rel="stylesheet">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -84,7 +84,7 @@
         @yield('content')
     </main>
 </div>
-<!-- Styles -->
-<link href="{{ asset('front/css/app.css') }}" rel="stylesheet">
+<!-- Scripts -->
+<script src="{{ asset('front/js/app.js') }}" defer></script>
 </body>
 </html>
