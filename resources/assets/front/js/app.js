@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('monthly-children-support', require('./components/MontlyChildrenSupport.vue').default);
+Vue.component('Affiliate', require('./components/Share/Affiliate').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -74,3 +75,14 @@ $(document).ready(function () {
     },1000)
 });
 
+$(document).ready(function(){
+    $("a.coming-soon").click(function(e){
+        e.preventDefault();
+        Swal.fire({
+            title:"به زودی!",
+            text:"این بخش به زودی راه اندازی خواهد شد.",
+            confirmButtonText:"بسیار خب",
+            icon:"info"
+        })
+    })
+})
