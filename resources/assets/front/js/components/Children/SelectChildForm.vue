@@ -1,25 +1,28 @@
 <template>
     <div>
 
-        <div class="p-3" id="step2">
-            <h4 class="h4">#مرحله 2: تکمیل فرم اطلاعات تماس</h4>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
 
-            <div>
+                <div class="p-3" id="step2">
+                    <h4 class="h4">#مرحله 2: تکمیل فرم اطلاعات تماس</h4>
 
-                <strong v-if="Object.keys(selected_children).length >0">
-                    شما تعداد
-                    <span class=" text-primary">
+                    <div>
+
+                        <strong v-if="Object.keys(selected_children).length >0">
+                            شما تعداد
+                            <span class=" text-primary">
         {{ Object.keys(selected_children).length }}
                 </span>
-                    فرزند انتخاب کرده اید.
-                </strong>
+                            فرزند انتخاب کرده اید.
+                        </strong>
 
-                <strong v-if="Object.keys(selected_children).length == 0">
-                    شما تا کنون هیچ فرزندی را انتخاب نکرده اید.
-                </strong>
-            </div>
+                        <strong v-if="Object.keys(selected_children).length == 0">
+                            شما تا کنون هیچ فرزندی را انتخاب نکرده اید.
+                        </strong>
+                    </div>
 
-            <div class="p-3">
+                    <div class="p-3">
                 <span v-for="(child,key) in selected_children" class="badge-primary badge h3 mx-1 pr-2  pl-3 py-1">
                     <span class="h5">
                         <a class="px-1 text-white" @click="removeChild(key,child)" href="#" @click.prevent>
@@ -28,26 +31,31 @@
                         {{ child.name }}
                     </span>
                 </span>
-            </div>
+                    </div>
 
-            <div class="mt-5 mb-2">
-                <strong>لطفا فرم زیر را تکمیل کنید:</strong>
-                <div>بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت.</div>
-            </div>
-            <form class="childrenList">
-                <div class="form-group">
-                    <label for="name">نام و نام خانوادگی:</label>
-                    <input type="text" class="form-control" id="name" v-model="name">
-                </div>
-                <div class="form-group">
-                    <label for="mobile">شماره موبایل:</label>
-                    <input type="text" class="form-control" id="mobile" v-model="mobile">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary float-left" @click.prevent="submitForm" :disabled="loading">ثبت اطلاعات</button>
-                </div>
-            </form>
+                    <div class="mt-5 mb-2">
+                        <strong>لطفا فرم زیر را تکمیل کنید:</strong>
+                        <div>بعد از ثبت این فرم همکاران ما در واحد اکرام ایتام با شما تماس خواهند گرفت.</div>
+                    </div>
+                    <form class="childrenList">
+                        <div class="form-group">
+                            <label for="name">نام و نام خانوادگی:</label>
+                            <input type="text" class="form-control" id="name" v-model="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">شماره موبایل:</label>
+                            <input type="text" class="form-control" id="mobile" v-model="mobile">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary float-left" @click.prevent="submitForm" :disabled="loading">ثبت اطلاعات</button>
+                        </div>
+                    </form>
 
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-8 col-lg-3 mt-5 ">
+                <img src="/svg/kindness.svg" alt="" class="w-100 align-buttom">
+            </div>
         </div>
     </div>
 </template>

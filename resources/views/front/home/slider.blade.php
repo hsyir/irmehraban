@@ -6,17 +6,17 @@
             <div class="carousel-inner ">
                 <div class="carousel-item active ">
                     <img class="d-block w-100"
-                         src="https://via.placeholder.com/900x300/ffd0aa/808080?text=Iran-Mehraban"
+                         src="{{ asset("images/slide1.jpg") }}"
                          alt="First slide">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100"
-                         src="https://via.placeholder.com/900x300/fad05a/808080?text=Iran-Mehraban"
+                         src="{{ asset("images/slide1.jpg") }}"
                          alt="First slide">
                 </div>
                 <div class="carousel-item">
                     <img class="d-block w-100"
-                         src="https://via.placeholder.com/900x300/afd0aa/808080?text=Iran-Mehraban"
+                         src="{{ asset("images/slide1.jpg") }}"
                          alt="First slide">
                 </div>
             </div>

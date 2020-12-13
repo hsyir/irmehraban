@@ -18,8 +18,8 @@
                                     @for($i=1;$i<6;$i++)
                                         <div class="carousel-item {{ $i==1 ? "active" : ""}} p-5">
                                             <div class="row justify-content-center">
-                                                <div class="col-md-2">
-                                                    <img src="{{ asset("images/supporters_image_holder/{$i}.jpg") }}" alt=""
+                                                <div class="col-md-4 col-lg-2 col-6 mb-4">
+                                                    <img src="{{ asset("images/avatar-placeholder.png") }}" alt=""
                                                          class="w-100 rounded-circle border">
                                                 </div>
 

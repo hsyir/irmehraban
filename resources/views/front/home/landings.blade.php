@@ -5,25 +5,26 @@
             "title"=>"حمایت ماهیانه",
             "subject"=>"میخواهم از فرزندان طرح اکرام ایتام و محسنین حمایت ماهیانه داشته باشم.",
             "button-text"=>"اینجا کلیک کنید",
-            "button-class"=>"btn-primary",
+            "button-class"=>"btn-primary ",
+            "href"=>"#monthlySupport"
         ],
         [
             "title"=>"جشن تولد",
             "subject"=>"میخواهم در جشن تولد ایتام سهیم باشم.",
             "button-text"=>"اینجا کلیک کنید",
-            "button-class"=>"btn-warning",
+            "button-class"=>"btn-warning coming-soon",
         ],
         [
             "title"=>"حمایت خاص",
             "subject"=>"میخواهم فرزندانی که دارای شرایط خاص هستند کمک موردی انجام بدهم.",
             "button-text"=>"اینجا کلیک کنید",
-            "button-class"=>"btn-info",
+            "button-class"=>"btn-info coming-soon",
         ],
         [
             "title"=>"درخت آرزوها",
             "subject"=>"میخواهم آرزوی یک یتیم را براورده کنم",
             "button-text"=>"اینجا کلیک کنید",
-            "button-class"=>"btn-danger",
+            "button-class"=>"btn-danger coming-soon",
         ]
     ]
 @endphp
@@ -40,7 +41,7 @@
                             <div>{{ $card["subject"] }}</div>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="#" class="btn {{ $card["button-class"] }}">{{ $card["button-text"] }}</a>
+                            <a href="{{ $card["href"] ?? "#" }}" class="btn {{ $card["button-class"] }}">{{ $card["button-text"] }}</a>
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 {{--numbers--}}
-<section class="mt-5">
+<section class="my-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
+        <div class="row justify-content-center ">
+            <div class="col-md-6 col-lg-3 col-8 mb-3  ">
                 <div class="card shadow">
                     <div class="card-body ">
                         <h5 class="h5 text-center">تعداد فرزندان</h5>
@@ -10,7 +10,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3 col-8 mb-3  ">
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="h5 text-center">تعداد حامیان</h5>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3 col-8 mb-3  ">
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="h5 text-center">تعداد حمایت از فرزندان</h5>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-6 col-lg-3 col-8 mb-3  ">
                 <div class="card shadow">
                     <div class="card-body">
                         <h5 class="h5 text-center">فرزندان در انتظار حمایت</h5>
