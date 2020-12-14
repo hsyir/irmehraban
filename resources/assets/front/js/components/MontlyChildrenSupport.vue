@@ -7,6 +7,12 @@
         </div>
 
         <div class="p-3">
+
+            <div class="wow fadeIn">
+                <h4>#گام اول: انتخاب فرزندان</h4>
+                <p>لطفا از فهرست زیر فرزندان مورد نظر خود را انتخاب کنید:</p>
+            </div>
+
             <children-list @select="childSelected" @remove="removeChild"
                            :selected_children="selected_children"></children-list>
             <select-child-form :selected_children="selected_children" @remove="removeChild"

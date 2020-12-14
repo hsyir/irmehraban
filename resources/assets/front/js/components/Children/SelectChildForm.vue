@@ -1,15 +1,15 @@
 <template>
     <div>
-
         <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-8 col-lg-6">
 
                 <div class="p-3" id="step2">
-                    <h4 class="h4">#مرحله 2: تکمیل فرم اطلاعات تماس</h4>
+                    <h4 class="h4">#گام دوم: تکمیل فرم اطلاعات تماس</h4>
 
                     <div>
-
                         <strong v-if="Object.keys(selected_children).length >0">
+                            <h5 class="h5">فهرست مهربانی:</h5>
+
                             شما تعداد
                             <span class=" text-primary">
         {{ Object.keys(selected_children).length }}
@@ -47,7 +47,9 @@
                             <input type="text" class="form-control" id="mobile" v-model="mobile">
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary float-left" @click.prevent="submitForm" :disabled="loading">ثبت اطلاعات</button>
+                            <button class="btn btn-primary float-left" @click.prevent="submitForm" :disabled="loading">
+                                ثبت اطلاعات
+                            </button>
                         </div>
                     </form>
 
@@ -74,8 +76,8 @@
             }
         },
         methods: {
-            removeChild(childIndex,child) {
-                let vm=this;
+            removeChild(childIndex, child) {
+                let vm = this;
                 Swal.fire({
                     title: 'آیا مطمئن هستید؟',
                     text: `آیا مطمئن هستید که می خواهید '${child.name}' را از لیست مهربانی خود حذف کنید؟`,
@@ -92,8 +94,6 @@
                 })
 
 
-
-
             },
             submitForm() {
 
@@ -106,8 +106,6 @@
                 data.append("selected_children", JSON.stringify(this.selectedChildren()));
                 axios.post("/children/submitSupportList", data)
                     .then(res => {
-
-
                         setTimeout(function () {
                             window.location.href = res.data.support_url
                         }, 5000)
@@ -133,13 +131,35 @@
                             showConfirmButton: false,
                             focusConfirm: false,
                         })
-                        // Swal.fire("ایران مهربان"," اطلاعات با موفقیت ثبت شد <br> لطفا صبر کنید ","success")
-
                     })
-                    .catch(res => {
+                    .catch(function (error) {
+                        if (error.response) {
+                            // Request made and server responded
+                            let errors = error.response.data.errors;
 
+                            let errorMsg = "";
+
+                            for (error in errors) {
+                                errorMsg += `<li class="text-right">${errors[error]}</li>`;
+                            }
+
+                            errorMsg= `<ul>${errorMsg}</ul>`
+
+                            Swal.fire({
+                                title: 'مشکلی پیش آمده است!',
+                                icon: 'error',
+                                html: errorMsg,
+                                showCloseButton: true,
+                                showCancelButton: false,
+                                showConfirmButton: true,
+                                confirmButtonText: "بسیار خب",
+                                focusConfirm: true,
+                            })
+
+
+                        }
                     })
-                    .then(res => {
+                    .then(x => {
                         vm.loading = false;
                     })
                 ;

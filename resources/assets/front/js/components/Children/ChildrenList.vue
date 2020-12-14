@@ -1,11 +1,6 @@
 <template>
     <div>
 
-        <div class="wow fadeIn">
-            <h4>#گام اول: انتخاب فرزندان</h4>
-            <p>لطفا از لیست زیر فرزندان مورد نظر خود را انتخاب کنید:</p>
-        </div>
-
         <div class="row">
             <div v-for="child in children_list" class="col-sm-6 col-md-4 mb-4 col-lg-3">
                 <div class="card shadow h-100  wow  fadeIn " data-wow-delay=".5s">
@@ -50,7 +45,7 @@
                                 <div class=" p-3 mt-1 h6 text-center">
                                     شما
                                     "{{ child.name }}"
-                                    عزیز ما را به لیست مهربانی خود افزوده اید.
+                                    عزیز ما را به فهرست مهربانی خود افزوده اید.
                                 </div>
 
                                 <div class="px-4 text-center">
@@ -78,14 +73,14 @@
                                         @click="selectChild(child)"
                                 ><i
                                     class="fa fa-plus"> </i>
-                                    افزودن به لیست مهربانی
+                                    افزودن به فهرست مهربانی
                                 </button>
                             </div>
                             <div key="childSelected" v-if="isSelected(child)">
                                 <button class="btn btn-sm btn-outline-danger float-left"
                                         @click="removeChild(child)"
                                 ><i class="fa fa-minus-circle"> </i>
-                                    حذف از لیست
+                                    حذف از فهرست
                                 </button>
                             </div>
                         </transition>
@@ -146,7 +141,9 @@
                     }
                     vm.children_list = [...vm.children_list, ...children];
                 })
-                    .catch()
+                    .catch(res=>{
+                        console.log(res)
+                    })
                     .then(function () {
                         vm.loading = false;
                     })
