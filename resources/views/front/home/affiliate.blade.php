@@ -5,7 +5,7 @@
 <section class="p-5 bg-success  " id="affiliateSection">
     <div class="container text-white">
         <div class="row justify-content-center">
-            <div class="col-md-3 col-sm-6 col-8 mt-5 mt-md-0">
+            <div class="col-md-3 col-sm-6 col-6 my-5 mt-md-0">
                 <img src="{{ asset("svg/network.svg") }}" alt="" class="w-100">
             </div>
             <div class="col-md-6">
@@ -26,7 +26,7 @@
                         اگر مایل هستید تا نتیجه اشتراک گذاری و کار خیر خود را ببینید، قبل از منتشر کردن لینک در سایت ثبت
                         نام کنید، و بعد از وارد شدن به سایت از این بخش اقدام به انتشار لینک کنید.
                         <div>
-                            <a href="{{ route("login") }}" class="btn btn-outline-light float-left mr-1"> <i class="fa fa-user"></i>  ررود </a>
+                            <a href="{{ route("login") }}" class="btn btn-outline-light float-left mr-1"> <i class="fa fa-user"></i>  ورود </a>
                             <a href="{{ route("register") }}" class="btn btn-outline-light float-left"> <i class="fa fa-user-plus"></i>  ثبت نام </a>
                         </div>
                     @else
