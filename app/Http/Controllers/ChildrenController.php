@@ -6,6 +6,7 @@ use App\Http\Resources\ChildrenCollection;
 use App\Models\Child;
 use App\Models\Support;
 use App\Models\User;
+use App\Rules\ChildrenSelected;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,16 @@ class ChildrenController extends Controller
 
     public function storeSupportList(Request $request)
     {
+
+        $this->validate(
+            $request,
+            [
+                "selected_children" =>[new ChildrenSelected],
+                'supporter_name' => "required|max:255",
+                "supporter_mobile" => "required|iran_mobile",
+            ]
+
+        );
         $children_list = json_decode($request->selected_children);
         $support = new Support();
         $support->selected_children_count = count($children_list);
@@ -36,7 +47,7 @@ class ChildrenController extends Controller
         return response()->json([
             "success" => true,
             "uuid" => $support->uuid,
-            "support_url"=>$support->url
+            "support_url" => $support->url
         ]);
 
 
