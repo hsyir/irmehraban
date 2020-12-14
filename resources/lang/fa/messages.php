@@ -19,7 +19,6 @@ return [
     'Queues'     =>  'صف ها',
     'Credits'     =>  'اعتبار',
     'CreditGroups'     =>  'گروه اعتبار',
-    'Login' => 'ورود',
 
     'login'     =>  'ورود',
     'info'     =>  'اطلاع',

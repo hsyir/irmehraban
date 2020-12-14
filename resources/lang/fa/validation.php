@@ -174,5 +174,7 @@ return array(
         "customer_mobile"=>"شماره موبایل",
         "customer_email"=>"آدرس ایمیل مشتری",
         "admin_password"=>"رمز عبور",
+        "supporter_name"=>"نام و نام خانوادگی",
+        "supporter_mobile"=>"شماره موبایل",
     ),
 );
