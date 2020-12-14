@@ -17004,3 +17004,6 @@ body {
     transform: rotate(360deg);
   }
 }
+#affiliateSection img {
+  fill: #ffffff;
+}

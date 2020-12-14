@@ -27,6 +27,7 @@ class CreateSupportsTable extends Migration
             $table->text("approve_comment")->nullable();
             $table->unsignedInteger("approve_by")->nullable();
             $table->string("uuid")->unique();
+            $table->unsignedInteger('affiliate_id')->nullable();
             $table->timestamps();
         });
     }
