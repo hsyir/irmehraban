@@ -14,12 +14,11 @@ class ChildrenController extends Controller
 {
     public function childrenList()
     {
-        return new ChildrenCollection(Child::orderBy("priority", "ASC")->paginate(12));
+        return new ChildrenCollection(Child::with("tags")->orderBy("priority", "ASC")->paginate(12));
     }
 
     public function storeSupportList(Request $request)
     {
-
         $this->validate(
             $request,
             [
