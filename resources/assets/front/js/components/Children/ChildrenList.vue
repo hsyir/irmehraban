@@ -29,7 +29,7 @@
                                         {{ child.emotional_text }}
                                     </p>
                                     <div>
-                                        <div v-for="tag in child.tags" class="badge badge-secondary text-white">
+                                        <div v-for="tag in child.tags" class="badge badge-secondary text-white ml-1">
                                             {{ tag.name.fa }}
                                         </div>
                                     </div>
