@@ -2023,11 +2023,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ChildrenList",
   props: {
@@ -2075,7 +2070,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
 
         vm.children_list = [].concat(_toConsumableArray(vm.children_list), _toConsumableArray(children));
-      })["catch"]().then(function () {
+      })["catch"](function (res) {
+        console.log(res);
+      }).then(function () {
         vm.loading = false;
       });
     },
@@ -2117,6 +2114,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2229,8 +2228,30 @@ __webpack_require__.r(__webpack_exports__);
           showCancelButton: false,
           showConfirmButton: false,
           focusConfirm: false
-        }); // Swal.fire("ایران مهربان"," اطلاعات با موفقیت ثبت شد <br> لطفا صبر کنید ","success")
-      })["catch"](function (res) {}).then(function (res) {
+        });
+      })["catch"](function (error) {
+        if (error.response) {
+          // Request made and server responded
+          var errors = error.response.data.errors;
+          var errorMsg = "";
+
+          for (error in errors) {
+            errorMsg += "<li class=\"text-right\">".concat(errors[error], "</li>");
+          }
+
+          errorMsg = "<ul>".concat(errorMsg, "</ul>");
+          Swal.fire({
+            title: 'مشکلی پیش آمده است!',
+            icon: 'error',
+            html: errorMsg,
+            showCloseButton: true,
+            showCancelButton: false,
+            showConfirmButton: true,
+            confirmButtonText: "بسیار خب",
+            focusConfirm: true
+          });
+        }
+      }).then(function (x) {
         vm.loading = false;
       });
     },
@@ -2273,6 +2294,12 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -42996,8 +43023,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row" },
@@ -43044,7 +43069,7 @@ var render = function() {
                     _c("div", { staticClass: "col-12" }, [
                       _c("div"),
                       _vm._v(" "),
-                      _vm._m(1, true),
+                      _vm._m(0, true),
                       _vm._v(" "),
                       _c("p", { staticClass: "p-2" }, [
                         _vm._v(
@@ -43092,7 +43117,7 @@ var render = function() {
                               _vm._v(
                                 '\n                                شما\n                                "' +
                                   _vm._s(child.name) +
-                                  '"\n                                عزیز ما را به لیست مهربانی خود افزوده اید.\n                            '
+                                  '"\n                                عزیز ما را به فهرست مهربانی خود افزوده اید.\n                            '
                               )
                             ]
                           ),
@@ -43153,7 +43178,7 @@ var render = function() {
                               [
                                 _c("i", { staticClass: "fa fa-plus" }),
                                 _vm._v(
-                                  "\n                                افزودن به لیست مهربانی\n                            "
+                                  "\n                                افزودن به فهرست مهربانی\n                            "
                                 )
                               ]
                             )
@@ -43176,7 +43201,7 @@ var render = function() {
                               [
                                 _c("i", { staticClass: "fa fa-minus-circle" }),
                                 _vm._v(
-                                  "\n                                حذف از لیست\n                            "
+                                  "\n                                حذف از فهرست\n                            "
                                 )
                               ]
                             )
@@ -43201,7 +43226,7 @@ var render = function() {
             key: "onLoad",
             staticClass: "text-center  text-secondary p-3 pb-5 h6"
           },
-          [_vm._m(2), _vm._v(" در حال دریافت اطلاعات...\n    ")]
+          [_vm._m(1), _vm._v(" در حال دریافت اطلاعات...\n    ")]
         )
       : _vm._e(),
     _vm._v(" "),
@@ -43231,16 +43256,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "wow fadeIn" }, [
-      _c("h4", [_vm._v("#گام اول: انتخاب فرزندان")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("لطفا از لیست زیر فرزندان مورد نظر خود را انتخاب کنید:")])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -43282,17 +43297,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-6 col-lg-4" }, [
+      _c("div", { staticClass: "col-md-8 col-lg-6" }, [
         _c("div", { staticClass: "p-3", attrs: { id: "step2" } }, [
           _c("h4", { staticClass: "h4" }, [
-            _vm._v("#مرحله 2: تکمیل فرم اطلاعات تماس")
+            _vm._v("#گام دوم: تکمیل فرم اطلاعات تماس")
           ]),
           _vm._v(" "),
           _c("div", [
             Object.keys(_vm.selected_children).length > 0
               ? _c("strong", [
+                  _c("h5", { staticClass: "h5" }, [_vm._v("فهرست مهربانی:")]),
                   _vm._v(
-                    "\n                        شما تعداد\n                        "
+                    "\n\n                        شما تعداد\n                        "
                   ),
                   _c("span", { staticClass: " text-primary" }, [
                     _vm._v(
@@ -43427,7 +43443,11 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("ثبت اطلاعات")]
+                [
+                  _vm._v(
+                    "\n                            ثبت اطلاعات\n                        "
+                  )
+                ]
               )
             ])
           ])
@@ -43497,6 +43517,8 @@ var render = function() {
       "div",
       { staticClass: "p-3" },
       [
+        _vm._m(1),
+        _vm._v(" "),
         _c("children-list", {
           attrs: { selected_children: _vm.selected_children },
           on: { select: _vm.childSelected, remove: _vm.removeChild }
@@ -43526,6 +43548,18 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", [_vm._v("لطفا مراحل زیر را دنبال کنید")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "wow fadeIn" }, [
+      _c("h4", [_vm._v("#گام اول: انتخاب فرزندان")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v("لطفا از فهرست زیر فرزندان مورد نظر خود را انتخاب کنید:")
+      ])
     ])
   }
 ]
@@ -57199,7 +57233,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\irmehraban\resources\assets\front\js\app.js */"./resources/assets/front/js/app.js");
 
 
 /***/ })

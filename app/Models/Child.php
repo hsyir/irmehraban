@@ -5,6 +5,7 @@ namespace App\Models;
 use Baloot\EloquentHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\Tags\HasTags;
 
 class Child extends Model
@@ -43,6 +44,7 @@ class Child extends Model
     {
         return ([self::TYPE_EKRAM => "ایتام", self::TYPE_MOHSENIN => "محسنین"])[$this["type"]] ?? "";
     }
+
     public function getSexReadableAttribute()
     {
         return ([self::SEX_MALE => "پسر", self::SEX_FEMALE => "دختر"])[$this["sex"]] ?? "";
@@ -61,5 +63,24 @@ class Child extends Model
     protected $casts = [
         "birth_date" => "date",
     ];
+
+
+    public function scopeBirthday($q)
+    {
+
+        $dateBegin = now()->subDays(2);
+        $dateEnd = now()->addDays(10);
+
+        $yearBegin = $dateBegin->year;
+
+        return $q->whereRaw(
+            "DATE_FORMAT(`children`.`birth_date`,'{$yearBegin}-%m-%d') > '"
+            . $dateBegin->format("Y-m-d")
+            . "' and "
+            . "DATE_FORMAT(`children`.`birth_date`,'{$yearBegin}-%m-%d') < '" . $dateEnd->format("Y-m-d") . "'"
+
+        );
+    }
+
 
 }

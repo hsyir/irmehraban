@@ -15,6 +15,22 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-66W2PMZGDF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-66W2PMZGDF');
+    </script>
+
+
 </head>
 <body class="rtl">
 <div id="loader" class=" min-vh-100 bg-white position-fixed w-100">
@@ -89,7 +105,8 @@
     </main>
 
 
-    {{--footer--}}<section id="footer" class="bg-dark p-5">
+    {{--footer--}}
+    <section id="footer" class="bg-dark p-5">
         <div class="container  text-white">
             <div class="row ">
                 <div class="col-md-4">

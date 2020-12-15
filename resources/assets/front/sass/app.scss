@@ -16,6 +16,7 @@
 
 html {
     font-size: 14px;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -104,7 +105,7 @@ body {
     height: 50px;
     margin: 200px auto;
     border: 3px solid #aaaaaa;
-    border-top: 3px solid #f00;
+    border-top: 3px solid $color-primary-0;
     border-radius: 50%;
     animation: spinner 1s linear infinite;
 }

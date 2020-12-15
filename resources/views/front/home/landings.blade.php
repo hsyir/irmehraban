@@ -12,7 +12,8 @@
             "title"=>"جشن تولد",
             "subject"=>"میخواهم در جشن تولد ایتام سهیم باشم.",
             "button-text"=>"اینجا کلیک کنید",
-            "button-class"=>"btn-warning coming-soon",
+            "button-class"=>"btn-warning",
+            "href"=>"#birthday"
         ],
         [
             "title"=>"حمایت خاص",

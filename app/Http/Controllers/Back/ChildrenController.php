@@ -15,7 +15,8 @@ class ChildrenController extends Controller
      */
     public function index()
     {
-        $children = Child::paginate(50);
+//        dd(Child::birthday()->toSql())
+        $children = Child::birthday()->paginate(50);
         return view("back.children.all",compact("children"));
     }
 
