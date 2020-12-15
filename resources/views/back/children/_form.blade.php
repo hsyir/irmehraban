@@ -18,8 +18,8 @@
                     ->label("نام خانوادگی")
                      }}
                     {{
-                    Html::text("birth_date")
-                    ->value(old("birth_date",$child->birth_date_fa_f))
+                    Html::text("birth_date_fa_f")
+                    ->value(old("birth_date_fa_f",$child->birth_date_fa_f))
                     ->label("تاریخ تولد")
                      }}
                     {{
