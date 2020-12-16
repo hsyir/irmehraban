@@ -1,6 +1,6 @@
 
 {{--slider--}}
-<section class="  ">
+<section class="mt-3  ">
     <div class="container">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner ">
