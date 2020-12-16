@@ -30,6 +30,7 @@ class CreateChildrenTable extends Migration
             $table->text("needs")->nullable();
             $table->integer("priority")->nullable();
             $table->date("birth_date")->nullable();
+            $table->unsignedInteger("city_id");
             $table->timestamps();
         });
     }
