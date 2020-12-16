@@ -16,7 +16,7 @@ class ChildrenController extends Controller
     public function index()
     {
 //        dd(Child::birthday()->toSql())
-        $children = Child::birthday()->paginate(50);
+        $children = Child::paginate(50);
         return view("back.children.all",compact("children"));
     }
 
@@ -40,7 +40,7 @@ class ChildrenController extends Controller
     public function store(Request $request)
     {
         $child = $request->isMethod("post") ? new Child : Child::find($request->child_id);
-
+        $child->birth_date_fa_f = $request->birth_date_fa_f;
         $child->fill($request->toArray());
         $child->save();
 
