@@ -55,34 +55,55 @@ require("./Store/storeManager");
 
 
 window.Vivus = require("vivus");
-$(document).ready(function(){
+$(document).ready(function () {
     new Vivus('my-svg', {duration: 200});
 })
-
 
 
 window.Swal = require("sweetalert2");
 
 
-
 import WOW from 'wow.js';
+
 new WOW().init();
 
 
 $(document).ready(function () {
-    setTimeout(t=>{
+    setTimeout(t => {
         $("#loader").hide();
-    },1000)
+    }, 1000)
 });
 
-$(document).ready(function(){
-    $("a.coming-soon").click(function(e){
+$(document).ready(function () {
+    $("a.coming-soon").click(function (e) {
         e.preventDefault();
         Swal.fire({
-            title:"به زودی!",
-            text:"این بخش به زودی راه اندازی خواهد شد.",
-            confirmButtonText:"بسیار خب",
-            icon:"info"
+            title: "به زودی!",
+            text: "این بخش به زودی راه اندازی خواهد شد.",
+            confirmButtonText: "بسیار خب",
+            icon: "info"
         })
     })
+})
+
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+$(document).ready(function () {
+
+    if (getParameterByName("firstLogin")=="true"){
+        Swal.fire({
+            title: "خوش آمدید",
+            text: "کاربر گرامی، ثبت نام شما کامل شد، به وب سایت اکرام کاشمر خوش آمدید.",
+            confirmButtonText:"بسیار خب",
+            icon: "success"
+        })
+    }
 })
