@@ -24,8 +24,8 @@ class ChildrenImport implements ToCollection, WithHeadingRow
             Child::updateOrCreate(
                 ["national_code" => $row["national_code"]],
                 [
-                    "first_name" => explode(" ", $row["first_name"])[0],
-                    "last_name" => explode(" ", $row["first_name"])[1] ?? "",
+                    "first_name" => $row["first_name"] ?? "",
+                    "last_name" => $row["last_name"] ?? "",
                     "birth_date" => $this->parseGregorianDate($row["birth_date"]),
                     "type" => $this->transformType($row["type"]),
                     "sex" => $this->transformSex($row["sex"]),
