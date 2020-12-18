@@ -100,9 +100,11 @@
                 this.loading = true;
                 let vm = this;
 
+
+
                 let data = new FormData();
                 data.append("supporter_name", this.name);
-                data.append("supporter_mobile", this.mobile);
+                data.append("supporter_mobile", this.num2en( this.mobile));
                 data.append("selected_children", JSON.stringify(this.selectedChildren()));
                 axios.post("/children/submitSupportList", data)
                     .then(res => {
@@ -164,7 +166,14 @@
                     })
                 ;
             },
+            num2en (str) {
 
+                let persianNum = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹']
+                for (var i = 0; i < 10; i++) {
+                    str = str.split(persianNum[i]).join(i);
+                }
+                return str;
+            },
             selectedChildren() {
                 return this.selected_children.map(child => {
                     return child.id;
