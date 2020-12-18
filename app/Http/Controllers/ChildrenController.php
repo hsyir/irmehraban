@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\SupportSubmited;
 use App\Http\Resources\ChildrenCollection;
 use App\Models\Child;
 use App\Models\Support;
@@ -14,7 +15,7 @@ class ChildrenController extends Controller
 {
     public function childrenList()
     {
-        return new ChildrenCollection(Child::with("tags")->orderBy("priority", "ASC")->paginate(12));
+        return new ChildrenCollection(Child::with("tags")->orderBy("priority", "ASC")->limit(60)->paginate(12)->shuffle());
     }
 
     public function storeSupportList(Request $request)
@@ -42,6 +43,8 @@ class ChildrenController extends Controller
         $support->save();
 
         $support->children()->attach($children_list);
+
+        event(new SupportSubmited($support));
 
         return response()->json([
             "success" => true,
