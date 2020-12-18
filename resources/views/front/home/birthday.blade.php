@@ -5,7 +5,7 @@
 @endphp
 
 
-<section id="birthday" class="bg-primary p-5">
+<section id="birthday" class="bg-secondary p-5">
     <div class="container ">
         <a name="birthday"></a>
         <div class="row justify-content-center">
@@ -20,6 +20,8 @@
                                 <p>
                                     در روز های پیش رو تولد فرزندانمان را با کمک شما جشن خواهیم گرفت، شما میتوانید برای تهیه هدیه مناسب فرزندان با ما در تماس باشید.
                                 </p>
+                                <div class=" alert alert-info">
+                                    این بخش در حال تکمیل شدن است. در حال حاضر شما می توانید با تماس با شماره تلفن 05155254370 برای مشارکت در تهیه هدیه تولد فرزندان ما اقدام نمایید. با تشکر</div>
                             </div>
                         </div>
                         <div class="row">

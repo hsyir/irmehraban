@@ -2,6 +2,7 @@
 
 @section('content')
     @include("front.home.slider")
+    @include("front.home.welcome")
     @include("front.home.landings")
     @include("front.home.about")
 {{--    @include("front.home.numbers")--}}

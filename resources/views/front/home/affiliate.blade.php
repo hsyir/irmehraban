@@ -18,7 +18,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control text-left" value="{{ $url }}" readonly>
                 </div>
-                <affiliate :url="{{ json_encode($url) }}" class="float-left"></affiliate>
+                <affiliate :url="{{ json_encode($url) }}" :text="{{ json_encode("دوست گرامی، لطفا از این وب سایت دیدن کنید.") }}" class="float-left"></affiliate>
                 <div class="clearfix"></div>
                 <h6 class="h6 mt-4">ما به شما اطلاع خواهیم داد!</h6>
                 <div class="text-justify">
