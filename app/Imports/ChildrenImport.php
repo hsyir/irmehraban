@@ -33,7 +33,7 @@ class ChildrenImport implements ToCollection, WithHeadingRow
                     "national_code" => $row["national_code"] ?? "",
                     "about" => $row["about"] ?? "",
                     "city_id" => 1,
-                    "priority" => $row["priority"] ?? "",
+                    "priority" => $row["priority"] ?? "6",
                 ]
             );
         };
