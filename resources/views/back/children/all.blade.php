@@ -21,6 +21,7 @@
                     <th>نام</th>
                     <th>تاریخ تولد</th>
                     <th>طرح</th>
+                    <th>اولویت</th>
                     <th>جنسیت</th>
                 </tr>
                 </thead>
@@ -31,6 +32,7 @@
                         <td><a href="{{ route("admin.children.edit",$child) }}">{{ $child->full_name }}</a></td>
                         <td>{{ $child->birth_date_fa_f }}</td>
                         <td>{{ $child->type_readable }}</td>
+                        <td>{{ $child->priority }}</td>
                         <td>{{ $child->sex_readable }}</td>
                     </tr>
                 @endforeach
