@@ -35,7 +35,6 @@ Route::get("sketch",function(){
 
 
 Route::get("import",function(){
-    \Illuminate\Support\Facades\Artisan::call("migrate:fresh");
     $children = \Maatwebsite\Excel\Facades\Excel::import(new \App\Imports\ChildrenImport(),storage_path("/emdad-excel/report.xlsx"));
     dd($children);
 });
