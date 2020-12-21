@@ -6,4 +6,6 @@ Route::prefix("admin")->as("admin.")->namespace("\\App\\Http\\Controllers\\Back"
 
     Route::resource("children", "ChildrenController")->except(["store", "update"]);
     Route::match(["put","post"],"children","ChildrenController@store")->name("children.store");
+
+    Route::resource("supports","SupportController")->only(['index',"show"]);
 });
