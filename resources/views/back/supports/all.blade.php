@@ -1,6 +1,6 @@
 @extends("back.layouts.app")
 @section("content_header")
-    @component("components.breadcrump",["items"=> ["Dashboard" =>route("admin.dashboard.index"),"current"=>"صف ها"]])
+    @component("components.breadcrump",["items"=> ["Dashboard" =>route("admin.dashboard.index"),"current"=>"حمایت های ماهیانه"]])
     @endcomponent
 @endsection
 
@@ -16,12 +16,9 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>کد ملی</th>
-                    <th>نام</th>
-                    <th>تاریخ تولد</th>
-                    <th>طرح</th>
-                    <th>اولویت</th>
-                    <th>جنسیت</th>
+                    <th>نام حامی</th>
+                    <th>شماره موبایل</th>
+                    <th>تعداد فرزند انتخاب شده</th>
                 </tr>
                 </thead>
                 <tbody>

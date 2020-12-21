@@ -241,6 +241,11 @@ return [
             'url'  => 'admin/children',
             "icon"=> 'fa fa-users'
         ],
+        [
+            'text' => 'حمایت ها',
+            'url'  => 'admin/supports',
+            "icon"=> 'fa fa-users'
+        ],
     ],
 
     /*
