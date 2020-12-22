@@ -21,4 +21,12 @@ class Support extends Model
     public function children(){
         return $this->belongsToMany(Child::class);
     }
+
+    public function affiliate(){
+        return $this->belongsTo(User::class,"affiliate_id")->withDefault(["name"=>"---"]);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class)->withDefault(["name"=>"---"]);
+    }
 }

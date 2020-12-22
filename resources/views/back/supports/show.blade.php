@@ -15,10 +15,37 @@
             <div class="card">
                 <div class="card-body">
 
+                    <div>
+                        <strong>نام حامی:</strong> {{ $support->supporter_name }}
+                    </div>
+                    <div>
+                        <strong>موبایل حامی:</strong> {{ $support->supporter_mobile }}
+                    </div>
+                    <div>
+                        <strong>کاربر معرف:</strong> {{ $support->affiliate->name }}
+                    </div>
+                    <div>
+                        <strong>کاربر ثبت کننده:</strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    اطلاعات فرزندان
+                </div>
+                <div class="card-body">
+
                     <table class="table">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th>نام</th>
+                            <th>نام خانوادگی</th>
+                            <th>کد ملی</th>
                         </tr>
                         </thead>
                         <tbody>
