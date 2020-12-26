@@ -9,11 +9,11 @@ return [
          * The default configurations to be used by the meta generator.
          */
         'defaults'       => [
-            'title'        => "ایران مهربان", // set false to total remove
+            'title'        => "اکرام کاشمر", // set false to total remove
             'titleBefore'  => false, // Put defaults.title before page title, like 'It's Over 9000! - Dashboard'
-            'description'  => '', // set false to total remove
+            'description'  => 'وب سایت اکرام ایتام و محسنین کاشمر، پویش شهر مهربان من', // set false to total remove
             'separator'    => ' - ',
-            'keywords'     => [],
+            'keywords'     => ["اکرام کاشمر","اکرام ایتام و محسنین کاشمر","امداد کاشمر","ایتام و نیازمندان کاشمر","ekram kashmar","ekram","ابران مهربان","پویش شهر مهربان من"],
             'canonical'    => false, // Set null for using Url::current(), set false to total remove
             'robots'       => false, // Set to 'all', 'none' or any combination of index/noindex and follow/nofollow
         ],
@@ -36,8 +36,8 @@ return [
          * The default configurations to be used by the opengraph generator.
          */
         'defaults' => [
-            'title'       => 'ایران مهربان', // set false to total remove
-            'description' => '', // set false to total remove
+            'title'       => 'اکرام کاشمر', // set false to total remove
+            'description' => 'وب سایت اکرام ایتام و محسنین کاشمر', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => false,
             'site_name'   => false,
@@ -58,8 +58,8 @@ return [
          * The default configurations to be used by the json-ld generator.
          */
         'defaults' => [
-            'title'       => 'ایران مهربان', // set false to total remove
-            'description' => '', // set false to total remove
+            'title'       => 'اکرام کاشمر', // set false to total remove
+            'description' => 'وب سایت اکرام ایتام و محسنین کاشمر', // set false to total remove
             'url'         => false, // Set null for using Url::current(), set false to total remove
             'type'        => 'WebPage',
             'images'      => [],
