@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class SupportController extends Controller
 {
     public function index(){
-        $supports = Support::orderBy("created_at","DESC")->withCount("children")->paginate(100);
+        $supports = Support::orderBy("created_at","DESC")->with("affiliate")->withCount("children")->paginate(100);
         return view("back.supports.all",compact("supports"));
     }
 

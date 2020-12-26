@@ -18,7 +18,8 @@
                 <tr>
                     <th>نام حامی</th>
                     <th>شماره موبایل</th>
-                    <th>تعداد فرزند انتخاب شده</th>
+                    <th>تعداد فرزند</th>
+                    <th>معرف</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                         <td><a href="{{ route("admin.supports.show",$support) }}">{{ $support->supporter_name }}</a></td>
                         <td>{{ $support->supporter_mobile }}</td>
                         <td>{{ $support->children_count }}</td>
+                        <td>{{ $support->affiliate->name }}</td>
                     </tr>
                 @endforeach
                 </tbody>
