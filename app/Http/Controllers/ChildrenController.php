@@ -15,7 +15,7 @@ class ChildrenController extends Controller
 {
     public function childrenList()
     {
-        return new ChildrenCollection(Child::with("tags")->orderBy("priority", "ASC")->limit(60)->paginate(12)->shuffle());
+        return new ChildrenCollection(Child::with("tags")->whereNotNull("about")->orderBy("priority", "DESC")->paginate(12));
     }
 
     public function storeSupportList(Request $request)
