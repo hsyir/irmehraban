@@ -1,6 +1,6 @@
 @extends("back.layouts.app")
 @section("content_header")
-    @component("components.breadcrump",["items"=> ["Dashboard" =>route("admin.dashboard.index"),"current"=>"صف ها"]])
+    @component("components.breadcrump",["items"=> ["Dashboard" =>route("admin.dashboard.index"),"current"=>"فرزندان"]])
         <a href="{{ route("admin.children.create") }}" class="btn btn-info btn-sm">جدید</a>
     @endcomponent
 @endsection

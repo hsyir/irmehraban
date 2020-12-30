@@ -8,6 +8,11 @@
             <div class="card">
                 <div class="card-body">
                     {{
+                    Html::text("national_code")
+                    ->value(old("national_code",$child->national_code))
+                    ->label("کد ملی")
+                    }}
+                    {{
                     Html::text("first_name")
                     ->value(old("first_name",$child->first_name))
                     ->label("نام فرزند")
@@ -27,6 +32,11 @@
                     ->value(old("emotional_text",$child->emotional_text))
                     ->label("متن احساسی")
                     ->description("")
+                     }}{{
+                    Html::textarea("priority")
+                    ->value(old("priority",$child->priority))
+                    ->label("اولولیت")
+                    ->description("")
                      }}
                     {{
                     Html::textarea("about")
@@ -34,6 +44,13 @@
                     ->label("درباره")
                     ->description("")
                      }}
+
+                    <label for="tags">برچسب ها</label>
+                    <select name="tags[]" class="form-control taggable" id="tags" multiple>
+                        @foreach(old('tags',$child->tags) as $tag)
+                            <option selected>{{ $tag->name }}</option>
+                        @endforeach
+                    </select>
 
                     <div class="row">
                         <div class="col-md-12">

@@ -1,7 +1,7 @@
 @extends("back.layouts.app")
 @section("content_header")
     @component("components.breadcrump",
-    ["items"=> ["Dashboard" =>route("admin.children.index"),"Users" =>route("admin.children.index"),"current"=>"ویرایش اطلاعات فرزند"]])
+    ["items"=> ["Dashboard" =>route("admin.children.index"),"Children" =>route("admin.children.index"),"current"=>"ویرایش اطلاعات فرزند"]])
     @endcomponent
 @endsection
 
