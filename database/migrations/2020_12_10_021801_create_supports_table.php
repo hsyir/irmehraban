@@ -15,19 +15,19 @@ class CreateSupportsTable extends Migration
     {
         Schema::create('supports', function (Blueprint $table) {
             $table->id();
-            $table->integer("selected_children_count");
             $table->text("supporter_name")->nullable();
             $table->text("supporter_mobile")->nullable();
             $table->text("supporter_address")->nullable();
             $table->text("supporter_tell")->nullable();
             $table->text("supporter_national_code")->nullable();
             $table->text("how_do_you_meet_us")->nullable();
-            $table->unsignedInteger("affiliate_user_id")->nullable();
+            $table->unsignedInteger("user_id")->nullable();
+            $table->unsignedInteger('affiliate_id')->nullable();
+            $table->integer("approve_status")->default(0);
             $table->dateTime("approved_at")->nullable();
             $table->text("approve_comment")->nullable();
             $table->unsignedInteger("approve_by")->nullable();
             $table->string("uuid")->unique();
-            $table->unsignedInteger('affiliate_id')->nullable();
             $table->text('emotional_text')->nullable();
             $table->timestamps();
         });
