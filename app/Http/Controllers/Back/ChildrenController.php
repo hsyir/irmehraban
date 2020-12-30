@@ -44,6 +44,8 @@ class ChildrenController extends Controller
         $child->fill($request->toArray());
         $child->save();
 
+        $child->tags = $request->tags;
+
         return self::redirectWithSuccess(route("admin.children.index"),"انجام شد");
     }
 
