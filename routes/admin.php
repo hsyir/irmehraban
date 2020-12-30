@@ -1,7 +1,7 @@
 <?php
 
 
-Route::prefix("admin")->as("admin.")->namespace("\\App\\Http\\Controllers\\Back")->group(function () {
+Route::prefix("admin")->as("admin.")->middleware("admin")->namespace("\\App\\Http\\Controllers\\Back")->group(function () {
     Route::get("/dashboard", "DashboardController@index")->name("dashboard.index");
 
     Route::resource("children", "ChildrenController")->except(["store", "update"]);
