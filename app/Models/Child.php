@@ -23,7 +23,7 @@ class Child extends Model
         SEX_MALE = 1,
         SEX_FEMALE = 2;
 
-    protected $fillable = ["first_name", "last_name", "national_code", "birth_date", "about", "emotional_text", "sex", "city_id", "type","priority"];
+    protected $fillable = ["first_name", "last_name", "national_code", "birth_date", "about", "emotional_text", "sex", "city_id", "type","priority","office_id"];
 
     public function getNameAttribute()
     {
