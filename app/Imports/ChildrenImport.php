@@ -41,17 +41,14 @@ class ChildrenImport implements ToCollection, WithHeadingRow
 
             $data["city_id"] = 1;
 
-            Child::updateOrCreate(
-                ["national_code" => $row["national_code"]],
-                $data
-            );
+            Child::updateOrCreate(["national_code" => $row["national_code"]], $data);
         };
     }
 
 
     public function transformCols($colIndex, $value)
     {
-        $method = "transform_{$colIndex}";
+        $method = "transform_{$colIndex}_col";
 
         if (method_exists($this, $method))
             return $this->$method($value);
@@ -60,12 +57,12 @@ class ChildrenImport implements ToCollection, WithHeadingRow
     }
 
 
-    private function transform_birth_date($jalaliDate)
+    private function transform_birth_date_col($jalaliDate)
     {
         return Verta::parseFormat("Y/m/d", $jalaliDate)->formatGregorian("Y-m-d");
     }
 
-    private function transform_sex($sex)
+    private function transform_sex_col($sex)
     {
         if ($sex == "پسر" or $sex === Child::SEX_MALE)
             return Child::SEX_MALE;
@@ -73,7 +70,7 @@ class ChildrenImport implements ToCollection, WithHeadingRow
         return Child::SEX_FEMALE;
     }
 
-    private function transform_type($type)
+    private function transform_type_col($type)
     {
         if ($type == "اکرام" or $type === Child::TYPE_EKRAM)
             return Child::TYPE_EKRAM;
