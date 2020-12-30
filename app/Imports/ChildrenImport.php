@@ -10,6 +10,16 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class ChildrenImport implements ToCollection, WithHeadingRow
 {
+    private $columns;
+
+    public function __construct()
+    {
+        $this->columns = [
+            "first_name", "last_name", "birth_date", "type",
+            "sex", "emotional_text", "national_code", "about", "priority",
+        ];
+    }
+
     /**
      * @param Collection $collection
      */
@@ -22,19 +32,7 @@ class ChildrenImport implements ToCollection, WithHeadingRow
     {
         return function ($row) {
 
-            $columns = [
-                "first_name",
-                "last_name",
-                "birth_date",
-                "type",
-                "sex",
-                "emotional_text",
-                "national_code",
-                "about",
-                "priority",
-            ];
-
-            foreach ($columns as $col) {
+            foreach ($this->columns as $col) {
                 if (isset($row[$col]))
                     $data[$col] = $this->transformCols($col, $row[$col]);
             }
@@ -45,7 +43,6 @@ class ChildrenImport implements ToCollection, WithHeadingRow
         };
     }
 
-
     public function transformCols($colIndex, $value)
     {
         $method = "transform_{$colIndex}_col";
@@ -55,7 +52,6 @@ class ChildrenImport implements ToCollection, WithHeadingRow
 
         return $value;
     }
-
 
     private function transform_birth_date_col($jalaliDate)
     {
@@ -77,4 +73,5 @@ class ChildrenImport implements ToCollection, WithHeadingRow
 
         return Child::TYPE_MOHSENIN;
     }
+
 }
