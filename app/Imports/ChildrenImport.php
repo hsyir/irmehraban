@@ -38,6 +38,7 @@ class ChildrenImport implements ToCollection, WithHeadingRow
             }
 
             $data["city_id"] = 1;
+            $data["office_id"] = 1;
 
             Child::updateOrCreate(["national_code" => $row["national_code"]], $data);
         };
