@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    const LEVEL_USER = 1;
+    const LEVEL_ADMIN = 2;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -54,5 +57,9 @@ class User extends Authenticatable
             return null;
 
         return $affiliateId;
+    }
+
+    public function isAdmin(){
+        return $this->level == self::LEVEL_ADMIN;
     }
 }
