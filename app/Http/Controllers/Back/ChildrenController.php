@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Back;
 use App\Http\Controllers\Controller;
 use App\Models\Child;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ChildrenController extends Controller
 {
@@ -93,6 +94,35 @@ class ChildrenController extends Controller
     {
         //
     }
+
+
+
+    public function getChildren()
+    {
+        $children = Child::query();
+
+        return DataTables::of($children)
+
+            ->addColumn('child_name_str', function ($row) {
+                return "<a href='" . route("admin.children.edit", $row->id) . "'>$row->name</a>";
+            })
+            ->addColumn('child_national_code', function ($row) {
+                return $row->national_code;
+            })
+            ->addColumn('child_birth_date', function ($row) {
+                return $row->birth_date_fa_f;
+            })
+            ->addColumn('child_priority', function ($row) {
+                return $row->priority;
+            })
+            ->addColumn('child_type_str', function ($row) {
+                return $row->type == Child::TYPE_EKRAM ? "اکرام" : "محسنین";
+            })
+
+            ->rawColumns(['child_name_str'])
+            ->make(true);
+    }
+
 }
 
 /*
