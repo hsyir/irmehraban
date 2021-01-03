@@ -22,7 +22,7 @@ class DetectAffiliate
         if ($request->query('via')) {
             if ($request->cookie("affiliate_id") != $request->query('via')){
                 $response->withCookie(cookie()->forever('affiliate_id', $request->query('via')));
-                event(new AffiliateConfirmed);
+                event(new AffiliateConfirmed($request->query('via')));
             }
         }
 
